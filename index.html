@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS Intech | Ingeniería, Arquitectura y Gestión Patrimonial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --alabaster: #F6F4EF;
+            --stone: #EAE6DF;
+            --charcoal: #141413;
+            --bronze: #8C7A5B;
+            --bronze-light: #A89572;
+            --white: #FFFFFF;
+            --gray-sub: #7A7975;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--alabaster);
+            color: var(--charcoal);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, h3, h4, .serif-font { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+        header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            background: rgba(246, 244, 239, 0.95); backdrop-filter: blur(12px);
+            z-index: 1000; border-bottom: 1px solid var(--stone);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.15rem 3rem;
+        }
+        .logo {
+            font-size: 1.5rem; letter-spacing: 0.25em; text-transform: uppercase;
+            color: var(--charcoal); font-weight: 600; text-decoration: none;
+        }
+        .nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
+        .nav-links a {
+            text-decoration: none; color: var(--charcoal); font-size: 0.78rem;
+            text-transform: uppercase; letter-spacing: 0.15em; transition: var(--transition);
+        }
+        .nav-links a:hover { color: var(--bronze); }
+        .nav-cta {
+            background: var(--charcoal); color: var(--white) !important;
+            padding: 0.65rem 1.3rem; transition: var(--transition);
+        }
+        .nav-cta:hover { background: var(--bronze) !important; }
+        .hero {
+            height: 88vh; position: relative; display: flex; align-items: center;
+            justify-content: center; text-align: center; padding: 0 1.5rem;
+            margin-top: 72px; overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=85') no-repeat center center/cover;
+            animation: kenBurns 24s infinite alternate linear; z-index: 1;
+        }
+        .hero::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(180deg, rgba(20,20,19,0.35) 0%, rgba(20,20,19,0.72) 100%);
+            z-index: 2;
+        }
+        @keyframes kenBurns { 0% { transform: scale(1); } 100% { transform: scale(1.07); } }
+        .hero-content { position: relative; z-index: 3; color: var(--white); max-width: 960px; }
+        .hero-content h1 { font-size: 4rem; margin-bottom: 1.2rem; letter-spacing: 0.03em; line-height: 1.1; }
+        .hero-content p { font-size: 1rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.92; margin-bottom: 2.2rem; }
+        .btn-primary {
+            display: inline-block; background: var(--white); color: var(--charcoal);
+            padding: 0.95rem 2.2rem; text-decoration: none; font-size: 0.78rem;
+            text-transform: uppercase; letter-spacing: 0.18em; font-weight: 600;
+            transition: var(--transition); border: 1px solid var(--white);
+        }
+        .btn-primary:hover { background: transparent; color: var(--white); }
+        .container { max-width: 1320px; margin: 0 auto; padding: 6rem 2rem; }
+        .section-header { text-align: center; max-width: 840px; margin: 0 auto 4rem auto; }
+        .section-header span {
+            font-size: 0.75rem; letter-spacing: 0.22em; text-transform: uppercase;
+            color: var(--bronze); display: block; margin-bottom: 0.8rem; font-weight: 600;
+        }
+        .section-header h2 { font-size: 2.8rem; margin-bottom: 1.2rem; line-height: 1.2; }
+        .section-header p { color: var(--gray-sub); font-size: 0.98rem; line-height: 1.75; }
+        .editorial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
+        .editorial-card {
+            background: var(--white); border: 1px solid var(--stone); padding: 2.5rem;
+            transition: var(--transition);
+        }
+        .editorial-card:hover { transform: translateY(-4px); border-color: var(--bronze); }
+        .editorial-card span {
+            font-size: 0.75rem; letter-spacing: 0.2em; color: var(--bronze);
+            text-transform: uppercase; display: block; margin-bottom: 0.8rem; font-weight: 600;
+        }
+        .editorial-card h3 { font-size: 2rem; margin-bottom: 1rem; }
+        .editorial-card p { font-size: 0.93rem; line-height: 1.75; color: var(--gray-sub); }
+        .portals-section {
+            background: var(--stone); padding: 6rem 0;
+            border-top: 1px solid var(--stone); border-bottom: 1px solid var(--stone);
+        }
+        .divisions-row {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3rem;
+        }
+        .division-card {
+            background: var(--white); border: 1px solid var(--stone);
+            display: flex; flex-direction: column; overflow: hidden; transition: var(--transition);
+        }
+        .division-card:hover { transform: translateY(-5px); border-color: var(--bronze); }
+        .division-img { height: 210px; background-size: cover; background-position: center; }
+        .division-body { padding: 1.8rem; display: flex; flex-direction: column; flex: 1; justify-content: space-between; }
+        .division-body h3 { font-size: 1.8rem; margin-bottom: 0.7rem; }
+        .division-body p { font-size: 0.9rem; color: var(--gray-sub); line-height: 1.65; margin-bottom: 1.5rem; }
+        .btn-division {
+            background: var(--charcoal); color: var(--white); border: none;
+            padding: 0.85rem 1.2rem; font-size: 0.75rem; text-transform: uppercase;
+            letter-spacing: 0.16em; font-weight: 600; cursor: pointer; transition: var(--transition);
+            width: 100%;
+        }
+        .btn-division:hover { background: var(--bronze); }
+        .portal-panel {
+            display: none; background: var(--white); border: 1px solid var(--stone);
+            padding: 2.5rem; margin-bottom: 2rem;
+        }
+        .portal-panel.active { display: block; }
+        .portal-panel-top {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--stone);
+        }
+        .btn-close-panel {
+            background: transparent; border: 1px solid var(--charcoal); color: var(--charcoal);
+            padding: 0.45rem 0.9rem; font-size: 0.75rem; text-transform: uppercase;
+            letter-spacing: 0.12em; cursor: pointer;
+        }
+        .filter-bar { display: flex; gap: 0.8rem; margin-bottom: 2rem; flex-wrap: wrap; }
+        .filter-btn {
+            background: var(--alabaster); border: 1px solid var(--stone);
+            padding: 0.65rem 1.2rem; font-size: 0.78rem; text-transform: uppercase;
+            letter-spacing: 0.12em; cursor: pointer; transition: var(--transition);
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--charcoal); color: var(--white); border-color: var(--charcoal);
+        }
+        .properties-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
+        .property-card { background: var(--alabaster); border: 1px solid var(--stone); overflow: hidden; }
+        .property-img { height: 210px; background-size: cover; background-position: center; position: relative; }
+        .property-tag {
+            position: absolute; top: 1rem; left: 1rem; background: var(--charcoal);
+            color: var(--white); font-size: 0.7rem; text-transform: uppercase;
+            letter-spacing: 0.14em; padding: 0.35rem 0.8rem;
+        }
+        .property-info { padding: 1.5rem; }
+        .property-info span {
+            font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+            color: var(--bronze); display: block; margin-bottom: 0.4rem;
+        }
+        .property-info h4 { font-size: 1.35rem; margin-bottom: 0.5rem; }
+        .property-info p { font-size: 0.88rem; color: var(--gray-sub); line-height: 1.6; }
+        .services-subgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 2rem; }
+        .service-box {
+            background: var(--alabaster); padding: 2rem; border: 1px solid var(--stone);
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .service-box h4 { font-size: 1.55rem; margin-bottom: 0.8rem; }
+        .service-box p { color: var(--gray-sub); font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.2rem; }
+        .service-box ul { list-style: none; margin-bottom: 1.5rem; }
+        .service-box ul li {
+            font-size: 0.88rem; color: var(--gray-sub); margin-bottom: 0.6rem;
+            display: flex; align-items: center; gap: 0.6rem;
+        }
+        .service-box ul li i { color: var(--bronze); }
+        .btn-service {
+            background: var(--charcoal); color: var(--white); border: none;
+            padding: 0.8rem 1rem; font-size: 0.74rem; text-transform: uppercase;
+            letter-spacing: 0.15em; font-weight: 600; cursor: pointer; transition: var(--transition);
+            width: 100%;
+        }
+        .btn-service:hover { background: var(--bronze); }
+        .modal-backdrop {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(20, 20, 19, 0.72); z-index: 2000;
+            align-items: center; justify-content: center; padding: 1rem;
+        }
+        .modal-backdrop.open { display: flex; }
+        .modal-box {
+            background: var(--white); border: 1px solid var(--stone); max-width: 540px;
+            width: 100%; padding: 2.2rem; max-height: 92vh; overflow-y: auto; position: relative;
+        }
+        .modal-close {
+            position: absolute; top: 1.2rem; right: 1.2rem; background: transparent;
+            border: 1px solid var(--stone); width: 34px; height: 34px; cursor: pointer; font-size: 1rem;
+        }
+        .forms-container-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .form-card { background: var(--white); border: 1px solid var(--stone); padding: 3rem; }
+        .form-card h3 { font-size: 2rem; margin-bottom: 0.5rem; }
+        .form-card p { color: var(--gray-sub); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.6; }
+        .input-group { margin-bottom: 1.2rem; }
+        .input-group label {
+            display: block; font-size: 0.74rem; text-transform: uppercase;
+            letter-spacing: 0.14em; margin-bottom: 0.5rem; font-weight: 600;
+        }
+        .input-group input, .input-group select, .input-group textarea {
+            width: 100%; padding: 0.85rem 1rem; border: 1px solid var(--stone);
+            background: var(--alabaster); font-family: inherit; font-size: 0.9rem; color: var(--charcoal);
+        }
+        .checkbox-group { display: flex; align-items: flex-start; gap: 0.7rem; margin-bottom: 1.5rem; }
+        .checkbox-group input { margin-top: 0.2rem; width: 16px; height: 16px; }
+        .checkbox-group label { font-size: 0.8rem; color: var(--gray-sub); line-height: 1.45; }
+        .btn-submit {
+            background: var(--charcoal); color: var(--white); border: none; width: 100%;
+            padding: 1rem; text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.78rem;
+            font-weight: 600; cursor: pointer; transition: var(--transition);
+        }
+        .btn-submit:hover { background: var(--bronze); }
+        .action-links-row { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1rem; }
+        .btn-action-link {
+            display: inline-block; padding: 0.65rem 1rem; font-size: 0.76rem;
+            font-weight: 600; text-decoration: none; border-radius: 2px;
+        }
+        .btn-email-link { background: var(--charcoal); color: var(--white); }
+        .btn-wa-link { background: #25D366; color: var(--white); }
+        .form-success-msg {
+            display: none; margin-top: 1.2rem; padding: 1rem; background: var(--stone);
+            border-left: 3px solid var(--bronze); font-size: 0.85rem; line-height: 1.5;
+        }
+        .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2.5rem; margin-bottom: 5rem; }
+        .process-step { border-top: 1px solid var(--charcoal); padding-top: 1.2rem; }
+        .process-step span {
+            font-size: 0.74rem; letter-spacing: 0.18em; color: var(--bronze);
+            text-transform: uppercase; display: block; margin-bottom: 0.6rem; font-weight: 600;
+        }
+        .process-step h4 { font-size: 1.45rem; margin-bottom: 0.6rem; }
+        .process-step p { font-size: 0.88rem; color: var(--gray-sub); line-height: 1.65; }
+        .faq-accordion { max-width: 880px; margin: 0 auto; }
+        .faq-item { background: var(--white); border: 1px solid var(--stone); margin-bottom: 1rem; }
+        .faq-question {
+            padding: 1.6rem 2rem; display: flex; justify-content: space-between;
+            align-items: center; cursor: pointer; font-weight: 600; font-size: 1.02rem;
+        }
+        .faq-question i { color: var(--bronze); transition: transform 0.3s ease; }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+        .faq-answer {
+            max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+            padding: 0 2rem; color: var(--gray-sub); font-size: 0.92rem; line-height: 1.7;
+        }
+        .faq-item.active .faq-answer { max-height: 260px; padding: 0 2rem 1.6rem 2rem; }
+        .whatsapp-float {
+            position: fixed; bottom: 2rem; right: 2rem; background: #25D366; color: var(--white);
+            width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; font-size: 1.7rem; box-shadow: 0 10px 25px rgba(0,0,0,0.16);
+            z-index: 1000; text-decoration: none;
+        }
+        footer { background: var(--charcoal); color: var(--white); padding: 5rem 2rem 2.5rem 2rem; }
+        .footer-content {
+            max-width: 1320px; margin: 0 auto; display: grid;
+            grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+            border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 3.5rem;
+        }
+        .footer-col h3 { font-size: 1.4rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.2rem; }
+        .footer-col p { color: #A3A39E; font-size: 0.9rem; line-height: 1.75; max-width: 420px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.7rem; }
+        .footer-col ul li a { color: #A3A39E; text-decoration: none; font-size: 0.85rem; }
+        .footer-col ul li a:hover { color: var(--white); }
+        .footer-bottom {
+            max-width: 1320px; margin: 2.5rem auto 0 auto; display: flex;
+            justify-content: space-between; align-items: center; color: #7A7975;
+            font-size: 0.8rem; flex-wrap: wrap; gap: 1rem;
+        }
+        @media (max-width: 960px) {
+            .divisions-row { grid-template-columns: 1fr; }
+            .forms-container-grid { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .hero-content h1 { font-size: 2.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">NEXUS Intech</a>
+        <ul class="nav-links">
+            <li><a href="#institucional">Nosotros</a></li>
+            <li><a href="#portales">Divisiones</a></li>
+            <li><a href="#vision-inversionistas">Accionistas</a></li>
+            <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+        </ul>
+    </header>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1>Ingeniería, Arquitectura y Gestión Patrimonial</h1>
+            <p>Villavicencio &bull; Plataforma Digital para el Sector Inmobiliario, Construcción e Ingeniería</p>
+            <a href="#portales" class="btn-primary">Explorar Divisiones</a>
+        </div>
+    </section>
+
+    <div class="container" id="institucional">
+        <div class="section-header">
+            <span>Presentación Institucional</span>
+            <h2>NEXUS Intech</h2>
+            <p>Plataforma corporativa en Villavicencio que integra gestión inmobiliaria, ejecución de obras, alquiler de equipos de construcción, cuadrillas certificadas e ingeniería aplicada con visión de crecimiento escalable.</p>
+        </div>
+
+        <div class="editorial-grid">
+            <div class="editorial-card">
+                <span>01 / Misión</span>
+                <h3>Soluciones Integradas</h3>
+                <p>Articular servicios inmobiliarios, construcción, alquiler de equipos e ingeniería técnica bajo criterios de claridad comercial, respaldo profesional y eficiencia operativa.</p>
+            </div>
+            <div class="editorial-card">
+                <span>02 / Visión</span>
+                <h3>Referente Regional</h3>
+                <p>Consolidar una plataforma empresarial confiable y escalable en la Orinoquía y Colombia, conectando clientes, propietarios, profesionales y aliados estratégicos.</p>
+            </div>
+            <div class="editorial-card">
+                <span>03 / Objetivos</span>
+                <h3>Precisión y Conexión</h3>
+                <p>Facilitar la búsqueda de activos, la contratación de servicios técnicos y la vinculación de aliados mediante canales estructurados y procesos transparentes.</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="portals-section" id="portales">
+        <div class="container" style="padding: 0 2rem;">
+            <div class="section-header" style="margin-bottom: 3rem;">
+                <span>Unidades Estratégicas</span>
+                <h2>Inmobiliaria, Construcción e Ingeniería</h2>
+                <p>Selecciona una unidad en los recuadros horizontales para desplegar su contenido detallado.</p>
+            </div>
+
+            <div class="divisions-row">
+                <div class="division-card">
+                    <div class="division-img" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="division-body">
+                        <div>
+                            <h3>01. Inmobiliaria</h3>
+                            <p>Compra, venta, arrendamiento, captación de propiedades y gestión inmobiliaria en Villavicencio con catálogo filtrable y atención directa.</p>
+                        </div>
+                        <button type="button" class="btn-division" onclick="openDivisionPanel('panel-inmobiliaria')">Ver Inmobiliaria</button>
+                    </div>
+                </div>
+
+                <div class="division-card">
+                    <div class="division-img" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="division-body">
+                        <div>
+                            <h3>02. Construcción</h3>
+                            <p>Ejecución de obras, alquiler de equipos de construcción y personal capacitado con certificación SST y alturas para proyectos en campo.</p>
+                        </div>
+                        <button type="button" class="btn-division" onclick="openDivisionPanel('panel-construccion')">Ver Construcción</button>
+                    </div>
+                </div>
+
+                <div class="division-card">
+                    <div class="division-img" style="background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="division-body">
+                        <div>
+                            <h3>03. Ingeniería y Tecnología</h3>
+                            <p>Ingeniería civil, consultoría técnica por sesión, planificación, costos, BIM, modelado, levantamientos topográficos y soluciones digitales.</p>
+                        </div>
+                        <button type="button" class="btn-division" onclick="openDivisionPanel('panel-ingenieria')">Ver Tecnología</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portal-panel active" id="panel-inmobiliaria">
+                <div class="portal-panel-top">
+                    <h3>01. NEXUS Inmobiliaria — Villavicencio</h3>
+                    <button type="button" class="btn-close-panel" onclick="closeDivisionPanel('panel-inmobiliaria')">Cerrar</button>
+                </div>
+                <p style="color: var(--gray-sub); margin-bottom: 1.5rem; line-height: 1.65;">
+                    Comercialización de inmuebles, compra y venta, arrendamiento, gestión inmobiliaria, captación de propiedades y oportunidades de inversión sin publicación de precios abiertos.
+                </p>
+                <div class="filter-bar">
+                    <button type="button" class="filter-btn active" onclick="filterProp('all', this)">Todos</button>
+                    <button type="button" class="filter-btn" onclick="filterProp('casa', this)">Casas</button>
+                    <button type="button" class="filter-btn" onclick="filterProp('apartamento', this)">Apartamentos</button>
+                    <button type="button" class="filter-btn" onclick="filterProp('finca', this)">Fincas</button>
+                    <button type="button" class="filter-btn" onclick="filterProp('lote', this)">Lotes</button>
+                    <button type="button" class="filter-btn" onclick="filterProp('local', this)">Locales</button>
+                    <button type="button" class="filter-btn" onclick="filterProp('alquiler', this)">Alquiler</button>
+                </div>
+                <div class="properties-grid" id="propGrid"></div>
+            </div>
+
+            <div class="portal-panel" id="panel-construccion">
+                <div class="portal-panel-top">
+                    <h3>02. NEXUS Construcción</h3>
+                    <button type="button" class="btn-close-panel" onclick="closeDivisionPanel('panel-construccion')">Cerrar</button>
+                </div>
+                <div class="services-subgrid">
+                    <div class="service-box">
+                        <div>
+                            <h4>Ejecución de Obras</h4>
+                            <p>Ejecución integral de proyectos civiles y edificaciones, presupuestos, cantidades de obra, planeación, control y trámites de licencias.</p>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Anteproyectos, planos y ploteo</li>
+                                <li><i class="fa-solid fa-check"></i> Coordinación y control de obra</li>
+                                <li><i class="fa-solid fa-check"></i> Contratación y alianzas de ejecución</li>
+                            </ul>
+                        </div>
+                        <button type="button" class="btn-service" onclick="openServiceModal('Ejecución de Obras')">Solicitar Ejecución de Obras</button>
+                    </div>
+
+                    <div class="service-box">
+                        <div>
+                            <h4>Alquiler de Equipos de Construcción</h4>
+                            <p>Disponibilidad de equipos y maquinaria menor y pesada para respaldar las fases estructurales y de obra civil de cada proyecto.</p>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Equipos de estructura y compactación</li>
+                                <li><i class="fa-solid fa-check"></i> Andamios y apoyo en obra</li>
+                                <li><i class="fa-solid fa-check"></i> Coordinación logística en Villavicencio</li>
+                            </ul>
+                        </div>
+                        <button type="button" class="btn-service" onclick="openServiceModal('Alquiler de Equipos de Construcción')">Solicitar Alquiler de Equipos</button>
+                    </div>
+
+                    <div class="service-box">
+                        <div>
+                            <h4>Personal Capacitado</h4>
+                            <p>Vinculación y disponibilidad de personal de campo y cuadrillas con certificación SST y trabajo en alturas para ejecución segura.</p>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Maestros de obra</li>
+                                <li><i class="fa-solid fa-check"></i> Oficiales calificados</li>
+                                <li><i class="fa-solid fa-check"></i> Ayudantes de construcción</li>
+                            </ul>
+                        </div>
+                        <button type="button" class="btn-service" onclick="openServiceModal('Personal Capacitado')">Solicitar Personal Capacitado</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portal-panel" id="panel-ingenieria">
+                <div class="portal-panel-top">
+                    <h3>03. NEXUS Ingeniería y Tecnología</h3>
+                    <button type="button" class="btn-close-panel" onclick="closeDivisionPanel('panel-ingenieria')">Cerrar</button>
+                </div>
+                <div class="services-subgrid">
+                    <div class="service-box">
+                        <div>
+                            <h4>Ingeniería Civil y Consultoría</h4>
+                            <p>Consultoría técnica por sesión, planificación y control de proyectos, gestión de costos y soluciones de ingeniería civil aplicada.</p>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Asesorías técnicas por sesión</li>
+                                <li><i class="fa-solid fa-check"></i> Planeación, costos y control</li>
+                            </ul>
+                        </div>
+                        <button type="button" class="btn-service" onclick="openServiceModal('Ingeniería Civil y Consultoría')">Solicitar Ingeniería y Consultoría</button>
+                    </div>
+
+                    <div class="service-box">
+                        <div>
+                            <h4>BIM, Modelado y Tecnología</h4>
+                            <p>Modelado BIM, visualización digital, levantamientos con drones RTK, escáner LiDAR, estaciones totales e innovación tecnológica.</p>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Modelado BIM y visualización 3D</li>
+                                <li><i class="fa-solid fa-check"></i> Equipos topográficos y drones</li>
+                            </ul>
+                        </div>
+                        <button type="button" class="btn-service" onclick="openServiceModal('BIM, Modelado y Tecnología')">Solicitar BIM y Tecnología</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container" id="vision-inversionistas">
+        <div class="section-header">
+            <span>Gobierno y Escalamiento</span>
+            <h2>NEXUS Intech | Visión Empresarial y Oportunidades de Crecimiento</h2>
+            <p>Estructura corporativa en desarrollo orientada a la articulación entre unidades estratégicas, transparencia en la gestión y alianzas de largo plazo.</p>
+        </div>
+
+        <div class="editorial-grid">
+            <div class="editorial-card">
+                <span>Modelo y Sinergia</span>
+                <h3>Relación entre Divisiones</h3>
+                <p>Inmobiliaria, Construcción e Ingeniería y Tecnología se complementan para acompañar activos desde su concepción técnica y viabilidad hasta su comercialización o gestión.</p>
+            </div>
+            <div class="editorial-card">
+                <span>Organización y Gobierno</span>
+                <h3>Estructura en Consolidación</h3>
+                <p>Avanzamos en la formalización de procesos internos, gobierno corporativo y estándares de control acordes con el crecimiento empresarial de NEXUS Intech.</p>
+            </div>
+            <div class="editorial-card">
+                <span>Colaboración y Expansión</span>
+                <h3>Aliados y Participación</h3>
+                <p>Abrimos canales de acercamiento para profesionales, contratistas, proveedores y futuros inversionistas interesados en conocer el desarrollo de la compañía.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="padding-top: 0;">
+        <div class="section-header">
+            <span>Seguimiento Comercial</span>
+            <h2>Proceso de Atención Comercial</h2>
+            <p>Flujo estructurado para atender consultas de clientes, propietarios, aliados e interesados en el crecimiento de NEXUS Intech.</p>
+        </div>
+
+        <div class="process-grid">
+            <div class="process-step">
+                <span>Paso 01</span>
+                <h4>Registro de Solicitud</h4>
+                <p>El usuario indica sus datos de contacto, servicio o perfil de interés, horario disponible y necesidad específica.</p>
+            </div>
+            <div class="process-step">
+                <span>Paso 02</span>
+                <h4>Clasificación y Revisión</h4>
+                <p>La consulta se clasifica según la unidad o tipo de vinculación para canalizarla con el área correspondiente.</p>
+            </div>
+            <div class="process-step">
+                <span>Paso 03</span>
+                <h4>Contacto y Devolución de Llamada</h4>
+                <p>Se coordina la respuesta o llamada en el horario indicado, con opción de comunicación directa por WhatsApp.</p>
+            </div>
+            <div class="process-step">
+                <span>Paso 04</span>
+                <h4>Propuesta o Vinculación</h4>
+                <p>Se define la ruta de trabajo, información técnica o esquema de colaboración según el caso.</p>
+            </div>
+        </div>
+
+        <div class="section-header" style="margin-top: 4rem;">
+            <span>Consultas Frecuentes</span>
+            <h2>Preguntas Frecuentes</h2>
+        </div>
+
+        <div class="faq-accordion">
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <span>¿Por qué las propiedades no muestran precios públicos en el catálogo?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Cada activo inmobiliario se gestiona de forma personalizada para brindar información actualizada, condiciones comerciales y asesoría directa según el perfil del interesado.
+                </div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <span>¿Cómo funciona el envío de formularios hacia correo y WhatsApp?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Al completar un formulario, el sistema prepara un mensaje estructurado que puedes enviar por correo electrónico o abrir en WhatsApp para atención inmediata.
+                </div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <span>¿Cómo pueden postularse propietarios, aliados, contratistas o inversionistas?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Puedes utilizar el formulario de Propietarios y Aliados indicando tu perfil, disponibilidad y detalle de tu propuesta o activos.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section style="background: var(--stone); padding: 6rem 0;" id="contacto">
+        <div class="container" style="padding-top: 0; padding-bottom: 0;">
+            <div class="section-header">
+                <span>Contacto y Oportunidades</span>
+                <h2>Canales para Clientes, Propietarios y Aliados</h2>
+                <p>Completa la información requerida y autoriza el tratamiento de datos para generar tu aviso por correo o enlace directo a WhatsApp.</p>
+            </div>
+
+            <div class="forms-container-grid">
+                <div class="form-card">
+                    <h3>Contacto y Captación de Clientes</h3>
+                    <p>Dirigido a clientes, compradores e interesados en servicios inmobiliarios, construcción o ingeniería.</p>
+                    <form id="clientForm" onsubmit="handleClientSubmit(event)">
+                        <div class="input-group">
+                            <label for="cName">Nombre Completo *</label>
+                            <input type="text" id="cName" required placeholder="Nombre y apellido">
+                        </div>
+                        <div class="input-group">
+                            <label for="cPhone">Teléfono / WhatsApp *</label>
+                            <input type="tel" id="cPhone" required placeholder="+1 415 589 9579">
+                        </div>
+                        <div class="input-group">
+                            <label for="cEmail">Correo Electrónico *</label>
+                            <input type="email" id="cEmail" required placeholder="correo@ejemplo.com">
+                        </div>
+                        <div class="input-group">
+                            <label for="cService">Servicio Solicitado *</label>
+                            <select id="cService" required>
+                                <option value="Inmobiliaria">Inmobiliaria (Compra, venta o alquiler)</option>
+                                <option value="Ejecución de Obras">Construcción — Ejecución de Obras</option>
+                                <option value="Alquiler de Equipos de Construcción">Construcción — Alquiler de Equipos de Construcción</option>
+                                <option value="Personal Capacitado">Construcción — Personal Capacitado</option>
+                                <option value="Ingeniería Civil y Consultoría">Ingeniería — Ingeniería Civil y Consultoría</option>
+                                <option value="BIM, Modelado y Tecnología">Ingeniería — BIM, Modelado y Tecnología</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="cType">Tipo de Cliente *</label>
+                            <select id="cType" required>
+                                <option value="Comprador">Comprador</option>
+                                <option value="Cliente / Particular">Cliente / Particular</option>
+                                <option value="Constructor / Contratista">Constructor / Contratista</option>
+                                <option value="Empresa">Empresa</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="cSchedule">Horario Disponible para Devolver Llamada *</label>
+                            <input type="text" id="cSchedule" required placeholder="Ej. Lunes a viernes, 9:00 a.m. - 12:00 m.">
+                        </div>
+                        <div class="input-group">
+                            <label for="cDesc">Descripción de la Necesidad / Motivo de la Consulta *</label>
+                            <textarea id="cDesc" rows="3" required placeholder="Describe tu requerimiento o consulta..."></textarea>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="cAuth" required>
+                            <label for="cAuth">Autorizo el tratamiento de mis datos personales conforme a la política de privacidad de NEXUS Intech.</label>
+                        </div>
+                        <button type="submit" class="btn-submit">Generar Aviso y Enlaces</button>
+                        <div class="form-success-msg" id="clientSuccess">
+                            <div>Solicitud lista para enviar:</div>
+                            <div class="action-links-row">
+                                <a id="clientMailLink" href="#" class="btn-action-link btn-email-link">Enviar Aviso por Correo</a>
+                                <a id="clientWaLink" href="#" target="_blank" rel="noopener" class="btn-action-link btn-wa-link">Responder por WhatsApp</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="form-card">
+                    <h3>Propietarios, Aliados e Inversionistas</h3>
+                    <p>Dirigido a propietarios, inversionistas, proveedores, contratistas, profesionales y socios estratégicos.</p>
+                    <form id="partnerForm" onsubmit="handlePartnerSubmit(event)">
+                        <div class="input-group">
+                            <label for="pName">Nombre Completo / Empresa *</label>
+                            <input type="text" id="pName" required placeholder="Nombre o razón social">
+                        </div>
+                        <div class="input-group">
+                            <label for="pPhone">Teléfono / WhatsApp *</label>
+                            <input type="tel" id="pPhone" required placeholder="+1 415 589 9579">
+                        </div>
+                        <div class="input-group">
+                            <label for="pEmail">Correo Electrónico *</label>
+                            <input type="email" id="pEmail" required placeholder="contacto@ejemplo.com">
+                        </div>
+                        <div class="input-group">
+                            <label for="pService">Servicio o Línea de Vinculación *</label>
+                            <select id="pService" required>
+                                <option value="Captación de Inmuebles">Captación / Publicación de Inmuebles</option>
+                                <option value="Alianza de Equipos de Construcción">Alianza — Alquiler de Equipos de Construcción</option>
+                                <option value="Personal y Cuadrillas Certificadas">Alianza — Personal y Cuadrillas Certificadas</option>
+                                <option value="Ingeniería, BIM y Consultoría">Alianza — Ingeniería, BIM y Consultoría</option>
+                                <option value="Inversión y Visión Empresarial">Inversión y Visión Empresarial</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="pType">Tipo de Aliado / Participante *</label>
+                            <select id="pType" required>
+                                <option value="Propietario">Propietario</option>
+                                <option value="Inversionista">Inversionista</option>
+                                <option value="Proveedor">Proveedor</option>
+                                <option value="Contratista">Contratista</option>
+                                <option value="Profesional">Profesional</option>
+                                <option value="Socio Estratégico">Socio Estratégico</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="pSchedule">Horario Disponible para Devolver Llamada *</label>
+                            <input type="text" id="pSchedule" required placeholder="Ej. Martes y jueves, 2:00 p.m. - 5:00 p.m.">
+                        </div>
+                        <div class="input-group">
+                            <label for="pDesc">Descripción de la Necesidad / Propuesta o Activos *</label>
+                            <textarea id="pDesc" rows="3" required placeholder="Detalla tu perfil, inmueble, equipo o propuesta de colaboración..."></textarea>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="pAuth" required>
+                            <label for="pAuth">Autorizo el tratamiento de mis datos personales conforme a la política de privacidad de NEXUS Intech.</label>
+                        </div>
+                        <button type="submit" class="btn-submit">Generar Aviso de Alianza</button>
+                        <div class="form-success-msg" id="partnerSuccess">
+                            <div>Postulación lista para enviar:</div>
+                            <div class="action-links-row">
+                                <a id="partnerMailLink" href="#" class="btn-action-link btn-email-link">Enviar Aviso por Correo</a>
+                                <a id="partnerWaLink" href="#" target="_blank" rel="noopener" class="btn-action-link btn-wa-link">Responder por WhatsApp</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal-backdrop" id="serviceModal" onclick="handleBackdropClick(event)">
+        <div class="modal-box">
+            <button type="button" class="modal-close" onclick="closeServiceModal()" aria-label="Cerrar">&times;</button>
+            <h3 id="modalServiceTitle" style="font-size: 1.9rem; margin-bottom: 0.4rem;">Solicitud de Servicio</h3>
+            <p style="color: var(--gray-sub); font-size: 0.88rem; margin-bottom: 1.5rem;">Completa tus datos para generar el aviso por correo electrónico o abrir WhatsApp.</p>
+            <form id="modalServiceForm" onsubmit="handleModalSubmit(event)">
+                <div class="input-group">
+                    <label for="mName">Nombre Completo *</label>
+                    <input type="text" id="mName" required placeholder="Tu nombre completo">
+                </div>
+                <div class="input-group">
+                    <label for="mPhone">Número de Teléfono / WhatsApp *</label>
+                    <input type="tel" id="mPhone" required placeholder="+1 415 589 9579">
+                </div>
+                <div class="input-group">
+                    <label for="mEmail">Correo Electrónico *</label>
+                    <input type="email" id="mEmail" required placeholder="correo@ejemplo.com">
+                </div>
+                <div class="input-group">
+                    <label for="mType">Tipo de Cliente *</label>
+                    <select id="mType" required>
+                        <option value="Cliente / Particular">Cliente / Particular</option>
+                        <option value="Constructor / Contratista">Constructor / Contratista</option>
+                        <option value="Propietario">Propietario</option>
+                        <option value="Empresa">Empresa</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="mSchedule">Horario Disponible *</label>
+                    <input type="text" id="mSchedule" required placeholder="Ej. Mañanas de 8:00 a.m. a 11:30 a.m.">
+                </div>
+                <div class="input-group">
+                    <label for="mDesc">Motivo de la Consulta / Descripción de la Necesidad *</label>
+                    <textarea id="mDesc" rows="3" required placeholder="Indica detalles del servicio, ubicación o tiempos..."></textarea>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="mAuth" required>
+                    <label for="mAuth">Autorizo el tratamiento de mis datos personales para la atención de esta consulta.</label>
+                </div>
+                <button type="submit" class="btn-submit">Generar Aviso por Correo y WhatsApp</button>
+                <div class="form-success-msg" id="modalSuccess">
+                    <div>Aviso preparado para <strong id="modalSelectedServiceLabel"></strong>:</div>
+                    <div class="action-links-row">
+                        <a id="modalMailLink" href="#" class="btn-action-link btn-email-link">Enviar Aviso por Correo</a>
+                        <a id="modalWaLink" href="#" target="_blank" rel="noopener" class="btn-action-link btn-wa-link">Ir a WhatsApp</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <a href="https://wa.me/14155899579?text=Hola%20NEXUS%20Intech%2C%20deseo%20informaci%C3%B3n%20sobre%20sus%20servicios." target="_blank" rel="noopener" class="whatsapp-float" aria-label="WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>NEXUS Intech</h3>
+                <p>Plataforma corporativa en Villavicencio, Colombia, enfocada en gestión inmobiliaria, construcción, alquiler de equipos, cuadrillas certificadas e ingeniería aplicada.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Divisiones</h3>
+                <ul>
+                    <li><a href="#portales" onclick="openDivisionPanel('panel-inmobiliaria')">NEXUS Inmobiliaria</a></li>
+                    <li><a href="#portales" onclick="openDivisionPanel('panel-construccion')">NEXUS Construcción</a></li>
+                    <li><a href="#portales" onclick="openDivisionPanel('panel-ingenieria')">NEXUS Ingeniería y Tecnología</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Institucional</h3>
+                <ul>
+                    <li><a href="#institucional">Nosotros, Misión y Visión</a></li>
+                    <li><a href="#vision-inversionistas">Visión Empresarial</a></li>
+                    <li><a href="#contacto">Contacto y Oportunidades</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NEXUS Intech. Villavicencio, Meta, Colombia.</p>
+            <p>Ingeniería &bull; Arquitectura &bull; Gestión Patrimonial</p>
+        </div>
+    </footer>
+
+    <script>
+        const NEXUS_EMAIL = 'diegohoyos2312@gmail.com';
+        const NEXUS_WHATSAPP = '14155899579';
+        let currentModalService = 'Servicio de Construcción / Ingeniería';
+
+        function openDivisionPanel(panelId) {
+            document.querySelectorAll('.portal-panel').forEach(p => p.classList.remove('active'));
+            const target = document.getElementById(panelId);
+            if (target) {
+                target.classList.add('active');
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function closeDivisionPanel(panelId) {
+            const target = document.getElementById(panelId);
+            if (target) target.classList.remove('active');
+        }
+
+        function toggleFaq(element) {
+            const isActive = element.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
+            if (!isActive) element.classList.add('active');
+        }
+
+        const properties = [
+            { id: 1, type: 'casa', title: 'Residencia Barzal Alto', location: 'Barzal Alto, Villavicencio', desc: 'Vivienda de diseño contemporáneo con distribución funcional y zonas sociales.', img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=700&q=80', tag: 'Venta' },
+            { id: 2, type: 'casa', title: 'Vivienda La Primavera', location: 'Vía Catama, Villavicencio', desc: 'Espacios amplios, iluminación natural y entorno residencial consolidado.', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=80', tag: 'Venta' },
+            { id: 3, type: 'apartamento', title: 'Apartamento Panorama', location: 'Centro, Villavicencio', desc: 'Ubicación urbana estratégica con buena ventilación y acceso rápido a servicios.', img: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=700&q=80', tag: 'Venta' },
+            { id: 4, type: 'apartamento', title: 'Apartamento Altavista', location: 'Villavicencio', desc: 'Distribución práctica, seguridad y cercanía a corredores principales.', img: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=700&q=80', tag: 'Alquiler' },
+            { id: 5, type: 'finca', title: 'Finca El Encanto', location: 'Guayuriba, Villavicencio', desc: 'Predio rural con áreas productivas, zonas verdes y acceso vehicular.', img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=700&q=80', tag: 'Venta' },
+            { id: 6, type: 'finca', title: 'Finca San Francisco', location: 'Vía Puerto López, Villavicencio', desc: 'Terreno amplio con espacios recreativos y proyección agropecuaria.', img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=700&q=80', tag: 'Venta' },
+            { id: 7, type: 'lote', title: 'Lote Corredor Vial', location: 'Anillo Vial, Villavicencio', desc: 'Terreno con frente sobre vía y potencial para desarrollo comercial o de servicios.', img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=700&q=80', tag: 'Venta' },
+            { id: 8, type: 'lote', title: 'Lote Quintas de la Sabana', location: 'Vía Acacías, Villavicencio', desc: 'Lote en sector residencial con disponibilidad para proyecto constructivo.', img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=700&q=80', tag: 'Venta' },
+            { id: 9, type: 'local', title: 'Local Comercial Centro', location: 'Villavicencio', desc: 'Espacio comercial adaptable para atención al público, oficina o comercio.', img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=700&q=80', tag: 'Comercial' },
+            { id: 10, type: 'alquiler', title: 'Vivienda en Arrendamiento', location: 'Quintas de San Fernando, Villavicencio', desc: 'Inmueble disponible para arrendamiento con gestión y acompañamiento de NEXUS Intech.', img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=700&q=80', tag: 'Alquiler' }
+        ];
+
+        function renderProperties(filter = 'all') {
+            const grid = document.getElementById('propGrid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            const filtered = filter === 'all'
+                ? properties
+                : properties.filter(p => p.type === filter || (filter === 'alquiler' && p.tag === 'Alquiler'));
+            filtered.forEach(prop => {
+                const card = document.createElement('div');
+                card.className = 'property-card';
+                card.innerHTML = `
+                    <div class="property-img" style="background-image: url('${prop.img}')">
+                        <div class="property-tag">${prop.tag}</div>
+                    </div>
+                    <div class="property-info">
+                        <span>${prop.location}</span>
+                        <h4>${prop.title}</h4>
+                        <p>${prop.desc}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterProp(type, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            renderProperties(type);
+        }
+
+        function openServiceModal(serviceName) {
+            currentModalService = serviceName;
+            document.getElementById('modalServiceTitle').textContent = serviceName;
+            document.getElementById('modalSelectedServiceLabel').textContent = serviceName;
+            document.getElementById('modalSuccess').style.display = 'none';
+            document.getElementById('serviceModal').classList.add('open');
+        }
+
+        function closeServiceModal() {
+            document.getElementById('serviceModal').classList.remove('open');
+        }
+
+        function handleBackdropClick(e) {
+            if (e.target.id === 'serviceModal') closeServiceModal();
+        }
+
+        function buildContactLinks(data) {
+            const subject = `NEXUS Intech - ${data.service} (${data.type})`;
+            const body = [
+                `Servicio / Línea: ${data.service}`,
+                `Tipo: ${data.type}`,
+                `Nombre: ${data.name}`,
+                `Teléfono: ${data.phone}`,
+                `Correo: ${data.email}`,
+                `Horario disponible: ${data.schedule}`,
+                `Descripción / Motivo: ${data.desc}`
+            ].join('\n');
+
+            const mailtoUrl = `mailto:${NEXUS_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            const waUrl = `https://wa.me/${NEXUS_WHATSAPP}?text=${encodeURIComponent('Hola NEXUS Intech,\n' + body)}`;
+            return { mailtoUrl, waUrl };
+        }
+
+        function handleModalSubmit(e) {
+            e.preventDefault();
+            const links = buildContactLinks({
+                service: currentModalService,
+                type: document.getElementById('mType').value,
+                name: document.getElementById('mName').value,
+                phone: document.getElementById('mPhone').value,
+                email: document.getElementById('mEmail').value,
+                schedule: document.getElementById('mSchedule').value,
+                desc: document.getElementById('mDesc').value
+            });
+            document.getElementById('modalMailLink').href = links.mailtoUrl;
+            document.getElementById('modalWaLink').href = links.waUrl;
+            document.getElementById('modalSuccess').style.display = 'block';
+        }
+
+        function handleClientSubmit(e) {
+            e.preventDefault();
+            const links = buildContactLinks({
+                service: document.getElementById('cService').value,
+                type: document.getElementById('cType').value,
+                name: document.getElementById('cName').value,
+                phone: document.getElementById('cPhone').value,
+                email: document.getElementById('cEmail').value,
+                schedule: document.getElementById('cSchedule').value,
+                desc: document.getElementById('cDesc').value
+            });
+            document.getElementById('clientMailLink').href = links.mailtoUrl;
+            document.getElementById('clientWaLink').href = links.waUrl;
+            document.getElementById('clientSuccess').style.display = 'block';
+        }
+
+        function handlePartnerSubmit(e) {
+            e.preventDefault();
+            const links = buildContactLinks({
+                service: document.getElementById('pService').value,
+                type: document.getElementById('pType').value,
+                name: document.getElementById('pName').value,
+                phone: document.getElementById('pPhone').value,
+                email: document.getElementById('pEmail').value,
+                schedule: document.getElementById('pSchedule').value,
+                desc: document.getElementById('pDesc').value
+            });
+            document.getElementById('partnerMailLink').href = links.mailtoUrl;
+            document.getElementById('partnerWaLink').href = links.waUrl;
+            document.getElementById('partnerSuccess').style.display = 'block';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProperties('all');
+        });
+    </script>
+</body>
+</html>
