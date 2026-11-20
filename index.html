@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS Intech | Ingeniería, Arquitectura y Gestión Patrimonial — Colombia y EE. UU.</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>NEXUS Intech | Ingeniería, Arquitectura y Gestión Patrimonial — Colombia &amp; EE. UU.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Paleta y tokens visuales base de NEXUS Intech */
@@ -15,61 +15,70 @@
             --bronze: #8C7A5B;
             --bronze-light: #A89572;
             --white: #FFFFFF;
-            --gray-sub: #7A7975;
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --gray-sub: #6E6D69;
+            --border-subtle: rgba(20, 20, 19, 0.12);
+            --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
 
         body {
             background-color: var(--alabaster);
             color: var(--charcoal);
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
 
         h1, h2, h3, h4, .serif-font {
             font-family: 'Cormorant Garamond', serif;
-            font-weight: 400;
+            font-weight: 500;
         }
 
-        /* Encabezado fijo */
+        /* Encabezado fijo y menú móvil */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(246, 244, 239, 0.95);
+            background: rgba(246, 244, 239, 0.94);
             backdrop-filter: blur(12px);
             z-index: 1000;
             border-bottom: 1px solid var(--stone);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.15rem 3rem;
+            padding: 1rem 3rem;
         }
 
         .logo {
-            font-size: 1.5rem;
-            letter-spacing: 0.25em;
+            font-size: 1.45rem;
+            letter-spacing: 0.24em;
             text-transform: uppercase;
             color: var(--charcoal);
             font-weight: 600;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .logo-badge {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.14em;
+            background: var(--bronze);
+            color: var(--white);
+            padding: 0.2rem 0.55rem;
+            border-radius: 999px;
+            font-weight: 600;
         }
 
         .nav-links {
             display: flex;
-            gap: 1.8rem;
+            gap: 1.6rem;
             list-style: none;
             align-items: center;
         }
@@ -77,46 +86,51 @@
         .nav-links a {
             text-decoration: none;
             color: var(--charcoal);
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             text-transform: uppercase;
             letter-spacing: 0.15em;
             transition: var(--transition);
+            font-weight: 500;
         }
 
-        .nav-links a:hover {
-            color: var(--bronze);
-        }
+        .nav-links a:hover { color: var(--bronze); }
 
         .nav-cta {
             background: var(--charcoal);
             color: var(--white) !important;
-            padding: 0.65rem 1.3rem;
-            transition: var(--transition);
+            padding: 0.65rem 1.25rem;
+            border-radius: 6px;
         }
 
-        .nav-cta:hover {
-            background: var(--bronze) !important;
+        .nav-cta:hover { background: var(--bronze) !important; }
+
+        .menu-toggle {
+            display: none;
+            background: var(--white);
+            border: 1px solid var(--border-subtle);
+            color: var(--charcoal);
+            padding: 0.65rem 0.9rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1rem;
         }
 
-        /* Hero principal con animación kenBurns */
+        /* Hero principal */
         .hero {
-            height: 82vh;
+            min-height: 86vh;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0 1.5rem;
-            margin-top: 72px;
+            padding: 4rem 1.5rem;
+            margin-top: 68px;
             overflow: hidden;
         }
 
         .hero-bg {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=85') no-repeat center center/cover;
             animation: kenBurns 24s infinite alternate linear;
             z-index: 1;
@@ -125,11 +139,8 @@
         .hero::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, rgba(20,20,19,0.35) 0%, rgba(20,20,19,0.72) 100%);
+            inset: 0;
+            background: linear-gradient(180deg, rgba(20, 20, 19, 0.42) 0%, rgba(20, 20, 19, 0.78) 100%);
             z-index: 2;
         }
 
@@ -145,16 +156,28 @@
             max-width: 980px;
         }
 
+        .hero-eyebrow {
+            display: inline-block;
+            font-size: 0.75rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            background: rgba(140, 122, 91, 0.28);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            padding: 0.45rem 1.1rem;
+            border-radius: 999px;
+            margin-bottom: 1.4rem;
+        }
+
         .hero-content h1 {
-            font-size: 4rem;
-            margin-bottom: 1.2rem;
-            letter-spacing: 0.03em;
-            line-height: 1.1;
+            font-size: clamp(2.6rem, 5.2vw, 4.3rem);
+            margin-bottom: 1.1rem;
+            letter-spacing: 0.02em;
+            line-height: 1.08;
         }
 
         .hero-content p {
             font-size: 0.98rem;
-            letter-spacing: 0.16em;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
             opacity: 0.94;
             margin-bottom: 2.2rem;
@@ -168,17 +191,21 @@
         }
 
         .btn-primary {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             background: var(--white);
             color: var(--charcoal);
-            padding: 0.95rem 2.2rem;
+            padding: 0.95rem 2rem;
             text-decoration: none;
             font-size: 0.78rem;
             text-transform: uppercase;
-            letter-spacing: 0.18em;
+            letter-spacing: 0.16em;
             font-weight: 600;
+            border-radius: 6px;
             transition: var(--transition);
             border: 1px solid var(--white);
+            cursor: pointer;
         }
 
         .btn-primary:hover {
@@ -187,17 +214,21 @@
         }
 
         .btn-secondary-hero {
-            display: inline-block;
-            background: transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(20, 20, 19, 0.55);
             color: var(--white);
-            padding: 0.95rem 2.2rem;
+            padding: 0.95rem 2rem;
             text-decoration: none;
             font-size: 0.78rem;
             text-transform: uppercase;
-            letter-spacing: 0.18em;
+            letter-spacing: 0.16em;
             font-weight: 600;
+            border-radius: 6px;
             transition: var(--transition);
-            border: 1px solid rgba(255,255,255,0.65);
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            cursor: pointer;
         }
 
         .btn-secondary-hero:hover {
@@ -224,61 +255,100 @@
             text-transform: uppercase;
             color: var(--bronze);
             display: block;
-            margin-bottom: 0.8rem;
-            font-weight: 600;
+            margin-bottom: 0.7rem;
+            font-weight: 700;
         }
 
         .section-header h2 {
-            font-size: 2.8rem;
-            margin-bottom: 1.2rem;
-            line-height: 1.2;
+            font-size: clamp(2.1rem, 3.8vw, 3rem);
+            margin-bottom: 1rem;
+            line-height: 1.15;
         }
 
         .section-header p {
             color: var(--gray-sub);
             font-size: 0.98rem;
-            line-height: 1.75;
+        }
+
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .editorial-card {
+            background: var(--white);
+            border: 1px solid var(--stone);
+            border-radius: 10px;
+            padding: 2.2rem;
+            transition: var(--transition);
+        }
+
+        .editorial-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--bronze);
+            box-shadow: 0 14px 30px rgba(20, 20, 19, 0.06);
+        }
+
+        .editorial-card span {
+            font-size: 0.74rem;
+            letter-spacing: 0.2em;
+            color: var(--bronze);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 0.7rem;
+            font-weight: 700;
+        }
+
+        .editorial-card h3 {
+            font-size: 1.9rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .editorial-card p {
+            font-size: 0.92rem;
+            color: var(--gray-sub);
         }
 
         /* Corredores Colombia y Estados Unidos */
         .corridor-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2.5rem;
-            margin-top: 2rem;
+            gap: 2.2rem;
         }
 
         .corridor-card {
             background: var(--white);
             border: 1px solid var(--stone);
+            border-radius: 10px;
             padding: 2.4rem;
             transition: var(--transition);
         }
 
         .corridor-card:hover {
             border-color: var(--bronze);
+            box-shadow: 0 14px 30px rgba(20, 20, 19, 0.06);
         }
 
-        .corridor-card span {
-            font-size: 0.74rem;
-            letter-spacing: 0.2em;
+        .corridor-card .tag-pill {
+            display: inline-block;
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
             color: var(--bronze);
-            font-weight: 600;
-            display: block;
-            margin-bottom: 0.7rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
         }
 
         .corridor-card h3 {
-            font-size: 2.1rem;
-            margin-bottom: 1rem;
+            font-size: 2rem;
+            margin-bottom: 0.85rem;
         }
 
         .corridor-card p {
-            font-size: 0.93rem;
+            font-size: 0.92rem;
             color: var(--gray-sub);
-            line-height: 1.75;
-            margin-bottom: 1.3rem;
+            margin-bottom: 1.2rem;
         }
 
         .corridor-list {
@@ -288,23 +358,25 @@
         .corridor-list li {
             font-size: 0.89rem;
             color: var(--charcoal);
-            margin-bottom: 0.65rem;
+            margin-bottom: 0.6rem;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 0.65rem;
         }
 
         .corridor-list li i {
             color: var(--bronze);
+            margin-top: 0.25rem;
         }
 
-        /* Banner de dirección ejecutiva */
+        /* Banner dirección ejecutiva */
         .leadership-banner {
             margin-top: 3rem;
             background: var(--white);
             border: 1px solid var(--stone);
             border-left: 4px solid var(--bronze);
-            padding: 2.2rem 2.8rem;
+            border-radius: 10px;
+            padding: 2.2rem 2.6rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -314,44 +386,43 @@
 
         .leadership-banner .role-tag {
             font-size: 0.74rem;
-            letter-spacing: 0.22em;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--bronze);
-            font-weight: 600;
+            font-weight: 700;
             display: block;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.35rem;
         }
 
         .leadership-banner h3 {
             font-size: 2.1rem;
             color: var(--charcoal);
-            margin-bottom: 0.3rem;
         }
 
         .leadership-banner p {
             font-size: 0.92rem;
             color: var(--gray-sub);
-            letter-spacing: 0.04em;
         }
 
         /* Sección de divisiones */
         .portals-section {
             background: var(--stone);
             padding: 5.5rem 0;
-            border-top: 1px solid var(--stone);
-            border-bottom: 1px solid var(--stone);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
         }
 
         .divisions-row {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            margin-bottom: 3rem;
+            margin-bottom: 2.8rem;
         }
 
         .division-card {
             background: var(--white);
-            border: 1px solid var(--stone);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -361,16 +432,17 @@
         .division-card:hover {
             transform: translateY(-5px);
             border-color: var(--bronze);
+            box-shadow: 0 16px 32px rgba(20, 20, 19, 0.08);
         }
 
         .division-img {
-            height: 210px;
+            height: 205px;
             background-size: cover;
             background-position: center;
         }
 
         .division-body {
-            padding: 1.8rem;
+            padding: 1.75rem;
             display: flex;
             flex-direction: column;
             flex: 1;
@@ -379,14 +451,13 @@
 
         .division-body h3 {
             font-size: 1.8rem;
-            margin-bottom: 0.7rem;
+            margin-bottom: 0.65rem;
         }
 
         .division-body p {
             font-size: 0.9rem;
             color: var(--gray-sub);
-            line-height: 1.65;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.4rem;
         }
 
         .btn-division {
@@ -396,71 +467,89 @@
             padding: 0.85rem 1.2rem;
             font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.16em;
+            letter-spacing: 0.15em;
             font-weight: 600;
+            border-radius: 6px;
             cursor: pointer;
             transition: var(--transition);
             width: 100%;
             text-decoration: none;
-            text-align: center;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
         }
 
-        .btn-division:hover {
-            background: var(--bronze);
-        }
+        .btn-division:hover { background: var(--bronze); }
 
-        /* Paneles desplegables por división */
         .portal-panel {
             display: none;
             background: var(--white);
-            border: 1px solid var(--stone);
-            padding: 2.5rem;
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 2.4rem;
             margin-bottom: 2rem;
+            animation: fadeInPanel 0.3s ease;
         }
 
-        .portal-panel.active {
-            display: block;
+        .portal-panel.active { display: block; }
+
+        @keyframes fadeInPanel {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .portal-panel-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
+            gap: 1rem;
+            margin-bottom: 1.4rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid var(--stone);
             flex-wrap: wrap;
-            gap: 1rem;
         }
+
+        .portal-panel-top h3 { font-size: 1.95rem; }
 
         .btn-close-panel {
             background: transparent;
             border: 1px solid var(--charcoal);
             color: var(--charcoal);
-            padding: 0.45rem 0.9rem;
-            font-size: 0.75rem;
+            padding: 0.45rem 0.95rem;
+            border-radius: 6px;
+            font-size: 0.72rem;
             text-transform: uppercase;
             letter-spacing: 0.12em;
             cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-close-panel:hover {
+            background: var(--charcoal);
+            color: var(--white);
         }
 
         /* Filtros inmobiliarios */
         .filter-bar {
             display: flex;
-            gap: 0.8rem;
+            gap: 0.65rem;
             margin-bottom: 2rem;
             flex-wrap: wrap;
         }
 
         .filter-btn {
             background: var(--alabaster);
-            border: 1px solid var(--stone);
-            padding: 0.65rem 1.2rem;
-            font-size: 0.78rem;
+            border: 1px solid var(--border-subtle);
+            padding: 0.6rem 1.15rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.12em;
             cursor: pointer;
+            font-weight: 600;
+            color: var(--charcoal);
             transition: var(--transition);
         }
 
@@ -473,18 +562,25 @@
 
         .properties-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+            gap: 1.75rem;
         }
 
         .property-card {
             background: var(--alabaster);
             border: 1px solid var(--stone);
+            border-radius: 8px;
             overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .property-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--bronze);
         }
 
         .property-img {
-            height: 210px;
+            height: 195px;
             background-size: cover;
             background-position: center;
             position: relative;
@@ -492,51 +588,74 @@
 
         .property-tag {
             position: absolute;
-            top: 1rem;
-            left: 1rem;
+            top: 0.85rem;
+            left: 0.85rem;
             background: var(--charcoal);
             color: var(--white);
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             text-transform: uppercase;
             letter-spacing: 0.14em;
-            padding: 0.35rem 0.8rem;
+            padding: 0.3rem 0.75rem;
+            border-radius: 4px;
+            font-weight: 600;
         }
 
-        .property-info {
-            padding: 1.5rem;
-        }
+        .property-info { padding: 1.4rem; }
 
         .property-info span {
-            font-size: 0.72rem;
-            letter-spacing: 0.14em;
+            font-size: 0.7rem;
+            letter-spacing: 0.13em;
             text-transform: uppercase;
             color: var(--bronze);
             display: block;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.35rem;
+            font-weight: 700;
         }
 
         .property-info h4 {
             font-size: 1.35rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.45rem;
         }
 
         .property-info p {
-            font-size: 0.88rem;
+            font-size: 0.87rem;
             color: var(--gray-sub);
-            line-height: 1.6;
+            margin-bottom: 1rem;
         }
 
-        /* Sub-cuadrícula en construcción */
+        .btn-inquire-prop {
+            background: transparent;
+            border: 1px solid var(--charcoal);
+            color: var(--charcoal);
+            padding: 0.55rem 0.95rem;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .btn-inquire-prop:hover {
+            background: var(--bronze);
+            border-color: var(--bronze);
+            color: var(--white);
+        }
+
+        /* Subservicios en construcción */
         .services-subgrid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+            gap: 1.8rem;
         }
 
         .service-box {
             background: var(--alabaster);
-            padding: 2rem;
+            padding: 1.9rem;
             border: 1px solid var(--stone);
+            border-radius: 8px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -544,14 +663,13 @@
 
         .service-box h4 {
             font-size: 1.55rem;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.7rem;
         }
 
         .service-box p {
             color: var(--gray-sub);
             font-size: 0.9rem;
-            line-height: 1.65;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.15rem;
         }
 
         .service-box ul {
@@ -560,42 +678,44 @@
         }
 
         .service-box ul li {
-            font-size: 0.88rem;
-            color: var(--gray-sub);
-            margin-bottom: 0.6rem;
+            font-size: 0.87rem;
+            color: var(--charcoal);
+            margin-bottom: 0.55rem;
             display: flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: 0.55rem;
         }
 
-        .service-box ul li i {
-            color: var(--bronze);
-        }
+        .service-box ul li i { color: var(--bronze); }
 
         .btn-service {
             background: var(--charcoal);
             color: var(--white);
             border: none;
-            padding: 0.85rem 1rem;
+            padding: 0.85rem 1.1rem;
             font-size: 0.74rem;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.14em;
             font-weight: 600;
+            border-radius: 6px;
             cursor: pointer;
             transition: var(--transition);
             width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
-        .btn-service:hover {
-            background: var(--bronze);
-        }
+        .btn-service:hover { background: var(--bronze); }
 
-        /* Módulo organizado de Ingeniería y Tecnología con botones visuales y funcionalidad clara */
+        /* Módulo organizado de Ingeniería y Tecnología con las 11 líneas */
         .tech-module-intro {
             background: var(--alabaster);
             border: 1px solid var(--stone);
             border-left: 4px solid var(--bronze);
-            padding: 1.4rem 1.8rem;
+            border-radius: 8px;
+            padding: 1.35rem 1.75rem;
             margin-bottom: 2rem;
         }
 
@@ -612,18 +732,19 @@
         .tech-module-intro p {
             color: var(--gray-sub);
             font-size: 0.92rem;
-            line-height: 1.65;
         }
 
         .tech-buttons-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.6rem;
+            gap: 1.65rem;
         }
 
         .tech-action-card {
             background: var(--alabaster);
             border: 1px solid var(--stone);
+            border-radius: 8px;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -632,6 +753,7 @@
 
         .tech-action-card:hover {
             border-color: var(--bronze);
+            transform: translateY(-3px);
         }
 
         .tech-card-media {
@@ -659,6 +781,7 @@
             text-transform: uppercase;
             letter-spacing: 0.14em;
             padding: 0.28rem 0.65rem;
+            border-radius: 4px;
             font-weight: 600;
         }
 
@@ -679,7 +802,6 @@
         .tech-card-body p {
             font-size: 0.88rem;
             color: var(--gray-sub);
-            line-height: 1.6;
             margin-bottom: 1.25rem;
         }
 
@@ -692,6 +814,7 @@
             background: var(--charcoal);
             color: var(--white);
             border: none;
+            border-radius: 6px;
             padding: 0.8rem 1rem;
             font-size: 0.73rem;
             text-transform: uppercase;
@@ -702,13 +825,12 @@
             text-align: left;
         }
 
-        .tech-img-btn:hover {
-            background: var(--bronze);
-        }
+        .tech-img-btn:hover { background: var(--bronze); }
 
         .tech-img-btn .mini-thumb {
             width: 30px;
             height: 30px;
+            border-radius: 4px;
             background-size: cover;
             background-position: center;
             flex-shrink: 0;
@@ -719,51 +841,56 @@
         .modal-backdrop {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             background: rgba(20, 20, 19, 0.76);
-            backdrop-filter: blur(4px);
+            backdrop-filter: blur(5px);
             z-index: 2000;
             align-items: center;
             justify-content: center;
             padding: 1.2rem;
+            overflow-y: auto;
         }
 
-        .modal-backdrop.open {
-            display: flex;
-        }
+        .modal-backdrop.open { display: flex; }
 
         .modal-box {
             background: var(--white);
             border: 1px solid var(--stone);
-            max-width: 860px;
+            border-radius: 12px;
+            max-width: 920px;
             width: 100%;
             padding: 2.2rem;
             max-height: 92vh;
             overflow-y: auto;
             position: relative;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+            animation: modalPop 0.28s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .modal-box.compact-modal {
-            max-width: 540px;
+        .modal-box.narrow { max-width: 560px; }
+
+        @keyframes modalPop {
+            from { opacity: 0; transform: scale(0.97) translateY(8px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         .modal-close {
             position: absolute;
-            top: 1.2rem;
-            right: 1.2rem;
+            top: 1.15rem;
+            right: 1.15rem;
             background: var(--alabaster);
-            border: 1px solid var(--stone);
-            width: 36px;
-            height: 36px;
-            cursor: pointer;
-            font-size: 1.1rem;
+            border: 1px solid var(--border-subtle);
             color: var(--charcoal);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.25rem;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: var(--transition);
+            z-index: 5;
         }
 
         .modal-close:hover {
@@ -771,160 +898,199 @@
             color: var(--white);
         }
 
-        .sub-options-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.2rem;
-            margin: 1.5rem 0 1.2rem 0;
+        .modal-header-block {
+            padding-right: 2.5rem;
+            margin-bottom: 1.6rem;
         }
 
-        .sub-img-btn {
+        .modal-header-block span {
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--bronze);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.35rem;
+        }
+
+        .modal-header-block h3 {
+            font-size: 2.15rem;
+            line-height: 1.15;
+            margin-bottom: 0.45rem;
+        }
+
+        .modal-header-block p {
+            color: var(--gray-sub);
+            font-size: 0.9rem;
+        }
+
+        .visual-choice-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+
+        .visual-choice-btn {
             position: relative;
-            height: 225px;
-            border: 2px solid transparent;
+            height: 250px;
+            border-radius: 10px;
             overflow: hidden;
+            border: 2px solid transparent;
             cursor: pointer;
-            background: var(--charcoal);
             text-align: left;
             padding: 0;
+            background: var(--charcoal);
             transition: var(--transition);
             display: flex;
             align-items: flex-end;
         }
 
-        .sub-img-btn:hover {
-            border-color: var(--bronze);
-            transform: translateY(-3px);
-        }
-
-        .sub-img-layer {
+        .visual-choice-btn .choice-photo {
             position: absolute;
             inset: 0;
             background-size: cover;
             background-position: center;
-            transition: transform 0.5s ease, filter 0.35s ease;
+            transition: transform 0.5s ease, filter 0.4s ease;
             z-index: 1;
         }
 
-        .sub-img-btn:hover .sub-img-layer {
+        /* Imagen difuminada para alquiler de equipos */
+        .visual-choice-btn.blurred-style .choice-photo {
+            filter: blur(2.6px) brightness(0.82);
             transform: scale(1.06);
         }
 
-        /* Imagen difuminada para alquiler de equipos */
-        .sub-img-layer.blurred-eq {
-            filter: blur(2.6px) brightness(0.84);
-            transform: scale(1.05);
+        .visual-choice-btn.blurred-style:hover .choice-photo {
+            filter: blur(1.2px) brightness(0.88);
+            transform: scale(1.12);
         }
 
-        .sub-img-btn:hover .sub-img-layer.blurred-eq {
-            filter: blur(1.8px) brightness(0.9);
-            transform: scale(1.09);
+        .visual-choice-btn:not(.blurred-style):hover .choice-photo {
+            transform: scale(1.08);
         }
 
-        .sub-img-scrim {
+        .visual-choice-btn .choice-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(20,20,19,0.12) 0%, rgba(20,20,19,0.88) 100%);
+            background: linear-gradient(180deg, rgba(20, 20, 19, 0.12) 25%, rgba(20, 20, 19, 0.88) 100%);
             z-index: 2;
         }
 
-        .sub-img-content {
+        .visual-choice-btn .choice-content {
             position: relative;
             z-index: 3;
-            padding: 1.1rem;
+            padding: 1.35rem;
             color: var(--white);
             width: 100%;
         }
 
-        .sub-img-badge {
+        .visual-choice-btn .choice-badge {
             display: inline-block;
-            font-size: 0.63rem;
-            letter-spacing: 0.15em;
+            font-size: 0.65rem;
+            letter-spacing: 0.16em;
             text-transform: uppercase;
-            background: rgba(140, 122, 91, 0.92);
+            background: var(--bronze);
             color: var(--white);
-            padding: 0.2rem 0.5rem;
-            margin-bottom: 0.4rem;
-            font-weight: 600;
+            padding: 0.25rem 0.65rem;
+            border-radius: 4px;
+            font-weight: 700;
+            margin-bottom: 0.55rem;
         }
 
-        .sub-img-title {
+        .visual-choice-btn .choice-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.38rem;
-            line-height: 1.12;
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.15;
             display: block;
-            margin-bottom: 0.28rem;
-            font-weight: 500;
+            margin-bottom: 0.35rem;
         }
 
-        .sub-img-sub {
-            font-size: 0.74rem;
-            color: rgba(255,255,255,0.9);
-            line-height: 1.35;
+        .visual-choice-btn .choice-sub {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.86);
+            line-height: 1.4;
             display: block;
+        }
+
+        .visual-choice-btn:hover {
+            border-color: var(--bronze-light);
+            transform: translateY(-4px);
+            box-shadow: 0 14px 28px rgba(20, 20, 19, 0.22);
         }
 
         /* Formularios de contacto */
         .forms-container-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: 2.5rem;
         }
 
         .form-card {
             background: var(--white);
             border: 1px solid var(--stone);
-            padding: 2.6rem;
+            border-radius: 10px;
+            padding: 2.5rem;
         }
 
         .form-card h3 {
             font-size: 2rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.45rem;
         }
 
         .form-card p {
             color: var(--gray-sub);
             font-size: 0.9rem;
-            margin-bottom: 1.8rem;
-            line-height: 1.6;
+            margin-bottom: 1.75rem;
         }
 
-        .input-group {
-            margin-bottom: 1.15rem;
-        }
+        .input-group { margin-bottom: 1.15rem; }
 
         .input-group label {
             display: block;
-            font-size: 0.74rem;
+            font-size: 0.72rem;
             text-transform: uppercase;
-            letter-spacing: 0.14em;
+            letter-spacing: 0.13em;
             margin-bottom: 0.45rem;
-            font-weight: 600;
+            font-weight: 700;
+            color: var(--charcoal);
         }
 
         .input-group input,
         .input-group select,
         .input-group textarea {
             width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1px solid var(--stone);
+            padding: 0.8rem 0.95rem;
+            border: 1px solid var(--border-subtle);
+            border-radius: 6px;
             background: var(--alabaster);
             font-family: inherit;
             font-size: 0.9rem;
             color: var(--charcoal);
+            transition: var(--transition);
+        }
+
+        .input-group input:focus,
+        .input-group select:focus,
+        .input-group textarea:focus {
+            outline: none;
+            border-color: var(--bronze);
+            background: var(--white);
         }
 
         .checkbox-group {
             display: flex;
             align-items: flex-start;
-            gap: 0.7rem;
+            gap: 0.65rem;
             margin-bottom: 1.4rem;
         }
 
         .checkbox-group input {
-            margin-top: 0.2rem;
+            margin-top: 0.22rem;
             width: 16px;
             height: 16px;
+            accent-color: var(--bronze);
+            flex-shrink: 0;
         }
 
         .checkbox-group label {
@@ -938,32 +1104,35 @@
             color: var(--white);
             border: none;
             width: 100%;
-            padding: 0.95rem;
+            padding: 0.95rem 1.2rem;
+            border-radius: 6px;
             text-transform: uppercase;
-            letter-spacing: 0.18em;
-            font-size: 0.78rem;
+            letter-spacing: 0.16em;
+            font-size: 0.76rem;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
         }
 
-        .btn-submit:hover {
-            background: var(--bronze);
-        }
+        .btn-submit:hover { background: var(--bronze); }
 
         .action-links-row {
             display: flex;
-            gap: 0.8rem;
+            gap: 0.75rem;
             flex-wrap: wrap;
-            margin-top: 1rem;
+            margin-top: 0.85rem;
         }
 
         .btn-action-link {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
             padding: 0.65rem 1rem;
             font-size: 0.76rem;
             font-weight: 600;
             text-decoration: none;
+            border-radius: 6px;
+            transition: var(--transition);
         }
 
         .btn-email-link {
@@ -971,45 +1140,90 @@
             color: var(--white);
         }
 
+        .btn-email-link:hover { background: var(--bronze); }
+
+        .btn-gmail-link {
+            background: var(--bronze);
+            color: var(--white);
+        }
+
+        .btn-copy-link {
+            background: var(--alabaster);
+            color: var(--charcoal);
+            border: 1px solid var(--charcoal);
+            cursor: pointer;
+            font-family: inherit;
+        }
+
         .btn-wa-link {
             background: #25D366;
             color: var(--white);
         }
 
+        .btn-wa-link:hover { filter: brightness(0.95); }
+
+        .direct-email-banner {
+            background: var(--white);
+            border: 1px solid var(--stone);
+            border-left: 4px solid var(--bronze);
+            border-radius: 10px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 2.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .direct-email-banner strong {
+            font-size: 1rem;
+            color: var(--charcoal);
+        }
+
+        .direct-email-banner p {
+            color: var(--gray-sub);
+            font-size: 0.88rem;
+            margin-top: 0.2rem;
+        }
+
         .form-success-msg {
             display: none;
-            margin-top: 1.2rem;
+            margin-top: 1.1rem;
             padding: 1rem;
             background: var(--stone);
             border-left: 3px solid var(--bronze);
+            border-radius: 6px;
             font-size: 0.85rem;
-            line-height: 1.5;
         }
 
         /* Botón flotante de WhatsApp */
         .whatsapp-float {
             position: fixed;
-            bottom: 2rem;
-            right: 2rem;
+            bottom: 1.8rem;
+            right: 1.8rem;
             background: #25D366;
             color: var(--white);
-            width: 58px;
-            height: 58px;
+            width: 56px;
+            height: 56px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.7rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.16);
+            font-size: 1.65rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
             z-index: 1000;
             text-decoration: none;
+            transition: var(--transition);
         }
+
+        .whatsapp-float:hover { transform: translateY(-3px) scale(1.04); }
 
         /* Pie de página oscuro en carbón */
         footer {
             background: var(--charcoal);
             color: var(--white);
-            padding: 4.5rem 2rem 2.5rem 2rem;
+            padding: 4.5rem 2rem 2.2rem 2rem;
         }
 
         .footer-content {
@@ -1017,154 +1231,189 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
-            gap: 3rem;
-            border-bottom: 1px solid rgba(255,255,255,0.15);
+            gap: 2.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.14);
             padding-bottom: 3rem;
         }
 
         .footer-col h3 {
-            font-size: 1.4rem;
+            font-size: 1.35rem;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
         }
 
         .footer-col p {
-            color: #A3A39E;
-            font-size: 0.9rem;
-            line-height: 1.75;
-            max-width: 420px;
+            color: #B2B1AC;
+            font-size: 0.89rem;
+            max-width: 460px;
         }
 
-        .footer-col ul {
-            list-style: none;
-        }
+        .footer-col ul { list-style: none; }
 
-        .footer-col ul li {
-            margin-bottom: 0.7rem;
-        }
+        .footer-col ul li { margin-bottom: 0.65rem; }
 
         .footer-col ul li a {
-            color: #A3A39E;
+            color: #B2B1AC;
             text-decoration: none;
             font-size: 0.85rem;
+            transition: var(--transition);
         }
 
-        .footer-col ul li a:hover {
-            color: var(--white);
-        }
+        .footer-col ul li a:hover { color: var(--white); }
 
         .footer-bottom {
             max-width: 1320px;
-            margin: 2.2rem auto 0 auto;
+            margin: 2rem auto 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: #7A7975;
+            color: #8A8984;
             font-size: 0.8rem;
             flex-wrap: wrap;
             gap: 1rem;
         }
 
         @media (max-width: 960px) {
-            .divisions-row {
-                grid-template-columns: 1fr;
-            }
-            .corridor-grid {
-                grid-template-columns: 1fr;
-            }
-            .forms-container-grid {
-                grid-template-columns: 1fr;
-            }
-            .sub-options-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
+            header { padding: 1rem 1.4rem; }
+            .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--alabaster);
+                border-bottom: 1px solid var(--stone);
+                flex-direction: column;
+                padding: 1.2rem 1.5rem;
+                gap: 1rem;
+                align-items: flex-start;
             }
-            .hero-content h1 {
-                font-size: 2.6rem;
-            }
+            .nav-links.open { display: flex; }
+            .divisions-row,
+            .corridor-grid,
+            .forms-container-grid,
+            .visual-choice-grid { grid-template-columns: 1fr; }
+            .visual-choice-btn { height: 210px; }
+            .footer-content { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <!-- Encabezado fijo -->
     <header>
-        <a href="#" class="logo">NEXUS Intech</a>
-        <ul class="nav-links">
-            <li><a href="#cobertura-internacional">Colombia &amp; EE. UU.</a></li>
-            <li><a href="#portales">Divisiones</a></li>
-            <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+        <a href="#" class="logo">
+            <span>NEXUS Intech</span>
+            <span class="logo-badge">CO &bull; US</span>
+        </a>
+        <button type="button" class="menu-toggle" id="menuToggleBtn" onclick="toggleMobileMenu()" aria-label="Abrir menú">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#institucional" onclick="closeMobileMenu()">Nosotros</a></li>
+            <li><a href="#cobertura-internacional" onclick="closeMobileMenu()">Colombia &amp; EE. UU.</a></li>
+            <li><a href="#portales" onclick="closeMobileMenu()">Divisiones</a></li>
+            <li><a href="#contacto" class="nav-cta" onclick="closeMobileMenu()">Negociar / Contacto</a></li>
         </ul>
     </header>
 
-    <!-- Hero principal -->
+    <!-- Portada principal -->
     <section class="hero">
         <div class="hero-bg"></div>
         <div class="hero-content">
+            <span class="hero-eyebrow">Ingeniero Diego Hoyos &bull; Project Manager &amp; CEO</span>
             <h1>Ingeniería, Arquitectura y Gestión Patrimonial</h1>
-            <p>Colombia &amp; Estados Unidos &bull; Operación Nacional, Conexión Internacional y Venta de Proyectos</p>
+            <p>Operación en Toda Colombia &bull; Conexión Directa en Estados Unidos &bull; Venta y Negociación de Proyectos</p>
             <div class="hero-actions">
-                <a href="#portales" class="btn-primary">Explorar Divisiones</a>
-                <a href="#contacto" class="btn-secondary-hero">Cotizar o Negociar Proyecto</a>
+                <a href="#portales" class="btn-primary">
+                    <i class="fa-solid fa-layer-group"></i> Explorar Divisiones
+                </a>
+                <a href="#contacto" class="btn-secondary-hero">
+                    <i class="fa-solid fa-handshake"></i> Negociar o Cotizar Proyecto
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Cobertura nacional e internacional -->
-    <div class="container" id="cobertura-internacional">
+    <!-- Sección institucional -->
+    <div class="container" id="institucional">
         <div class="section-header">
-            <span>Alcance Nacional e Internacional</span>
-            <h2>Todo Colombia y Conexión con Estados Unidos</h2>
-            <p>Recibe contactos desde cualquier ciudad de Colombia (incluida Villavicencio, Bogotá, Medellín y corredores regionales) y gestiona servicios, negociaciones y venta de proyectos hacia clientes en Estados Unidos.</p>
+            <span>Presentación Institucional</span>
+            <h2>NEXUS Intech</h2>
+            <p>Plataforma corporativa con alcance en toda Colombia (incluyendo Villavicencio, Bogotá, Medellín y corredores nacionales) y conexión directa en Estados Unidos, articulando gestión inmobiliaria, ejecución de obras civiles, alquiler de equipos, cuadrillas certificadas, ingeniería aplicada y negociación/venta de proyectos.</p>
         </div>
 
-        <div class="corridor-grid">
-            <div class="corridor-card">
-                <span>Corredor 01 / Nacional</span>
-                <h3>Operación en Todo Colombia</h3>
-                <p>Gestión inmobiliaria, ejecución de obras civiles, planeación, licencias, alquiler de equipos, cuadrillas certificadas e ingeniería aplicada en territorio colombiano.</p>
-                <ul class="corridor-list">
-                    <li><i class="fa-solid fa-check"></i> Compra, venta, alquiler, captación e inversión inmobiliaria</li>
-                    <li><i class="fa-solid fa-check"></i> Construcción, planeación, licencias, encofrados, maquinaria y andamios</li>
-                    <li><i class="fa-solid fa-check"></i> Asesorías, drones, topografía, BIM, 3D, planos, uniformes, publicidad y análisis</li>
-                </ul>
+        <div class="editorial-grid">
+            <div class="editorial-card">
+                <span>01 / Misión</span>
+                <h3>Soluciones Integradas</h3>
+                <p>Articular servicios inmobiliarios, construcción, alquiler de equipos, ingeniería técnica y estructuración de proyectos bajo criterios de claridad comercial, respaldo profesional y eficiencia operativa.</p>
             </div>
-
-            <div class="corridor-card">
-                <span>Corredor 02 / Internacional</span>
-                <h3>Conexión y Venta de Proyectos en EE. UU.</h3>
-                <p>Canal directo para presentar, negociar y vender proyectos a clientes en Estados Unidos, además de prestar servicios de ingeniería, BIM, 3D, asesoría y análisis técnico.</p>
-                <ul class="corridor-list">
-                    <li><i class="fa-solid fa-check"></i> Negociación comercial y estructuración de proyectos para EE. UU.</li>
-                    <li><i class="fa-solid fa-check"></i> Servicios remotos y presenciales de ingeniería, costos, BIM, 3D y análisis</li>
-                    <li><i class="fa-solid fa-check"></i> Coordinación de llamadas y propuestas adaptadas a la zona horaria del cliente</li>
-                </ul>
+            <div class="editorial-card">
+                <span>02 / Visión</span>
+                <h3>Puente Colombia — EE. UU.</h3>
+                <p>Consolidar una operación empresarial confiable y escalable entre Colombia y Estados Unidos, conectando clientes, propietarios, desarrolladores, aliados estratégicos y compradores de proyectos.</p>
+            </div>
+            <div class="editorial-card">
+                <span>03 / Objetivos</span>
+                <h3>Negociación y Ejecución</h3>
+                <p>Facilitar que nos contacten desde toda Colombia y ofrecer servicios, negociar alcances y vender proyectos a clientes en Estados Unidos mediante canales estructurados y seguimiento directo.</p>
             </div>
         </div>
 
-        <!-- Banner del Ingeniero Diego Hoyos -->
         <div class="leadership-banner">
             <div>
                 <span class="role-tag">Dirección Ejecutiva</span>
                 <h3>Ingeniero Diego Hoyos</h3>
-                <p>Project Manager &bull; CEO — NEXUS Intech (Colombia &amp; Conexión EE. UU.)</p>
+                <p>Project Manager &bull; CEO — NEXUS Intech (Operación Colombia &amp; Conexión EE. UU.)</p>
             </div>
-            <a href="#contacto" class="btn-division" style="width: auto; padding: 0.9rem 1.8rem;">Negociar Proyecto</a>
+            <a href="#contacto" class="btn-division" style="width: auto; padding: 0.9rem 1.8rem;">
+                <i class="fa-solid fa-comments"></i> Negociar con Dirección
+            </a>
         </div>
     </div>
 
-    <!-- Sección de divisiones -->
+    <!-- Alcance geográfico: Colombia y EE. UU. -->
+    <div class="container" id="cobertura-internacional" style="padding-top: 0;">
+        <div class="section-header">
+            <span>Alcance Geográfico y Comercial</span>
+            <h2>Operación en Todo Colombia y Conexión en Estados Unidos</h2>
+            <p>Recibe solicitudes desde cualquier ciudad de Colombia y estructura, negocia y vende proyectos o servicios de ingeniería y construcción a clientes en Estados Unidos.</p>
+        </div>
+
+        <div class="corridor-grid">
+            <div class="corridor-card">
+                <span class="tag-pill">Corredor 01 / Nacional</span>
+                <h3>Cobertura en Todo Colombia</h3>
+                <p>Atención y coordinación para clientes, propietarios, constructoras y aliados en todo el territorio colombiano, con base operativa y experiencia en Villavicencio / Meta y articulación nacional.</p>
+                <ul class="corridor-list">
+                    <li><i class="fa-solid fa-check"></i> Compra, venta, arrendamiento y captación de activos inmobiliarios</li>
+                    <li><i class="fa-solid fa-check"></i> Ejecución de obras civiles, planeación, licencias, equipos y personal SST</li>
+                    <li><i class="fa-solid fa-check"></i> Ingeniería civil, BIM, drones, topografía, 3D, planos, uniformes, publicidad y análisis</li>
+                </ul>
+            </div>
+
+            <div class="corridor-card">
+                <span class="tag-pill">Corredor 02 / Internacional</span>
+                <h3>Conexión y Venta de Proyectos en EE. UU.</h3>
+                <p>Canal directo para ofrecer servicios de ingeniería, consultoría técnica, gestión de proyectos, modelado BIM y negociación/venta de proyectos inmobiliarios o constructivos a clientes en Estados Unidos.</p>
+                <ul class="corridor-list">
+                    <li><i class="fa-solid fa-check"></i> Presentación, estructuración, negociación y venta de proyectos</li>
+                    <li><i class="fa-solid fa-check"></i> Soporte técnico, planeación, costos, BIM, 3D y análisis para clientes en EE. UU.</li>
+                    <li><i class="fa-solid fa-check"></i> Coordinación de llamadas, reuniones y negociaciones en horarios acordados</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Divisiones estratégicas -->
     <section class="portals-section" id="portales">
         <div class="container" style="padding: 0 2rem;">
             <div class="section-header" style="margin-bottom: 3rem;">
                 <span>Unidades Estratégicas</span>
                 <h2>Inmobiliaria, Construcción e Ingeniería y Tecnología</h2>
-                <p>Haz clic en cada división para abrir su panel y en los botones con imagen para elegir opciones claras según lo que necesites.</p>
+                <p>Selecciona una unidad en los recuadros horizontales para desplegar su contenido interactivo.</p>
             </div>
 
             <div class="divisions-row">
@@ -1173,9 +1422,11 @@
                     <div class="division-body">
                         <div>
                             <h3>01. Inmobiliaria</h3>
-                            <p>Compra, venta, alquiler, captación de propiedades y oportunidades de inversión en toda Colombia (incluyendo Villavicencio) y conexión con inversionistas en EE. UU.</p>
+                            <p>Compra, venta, arrendamiento, captación de propiedades y oportunidades de inversión en toda Colombia con catálogo filtrable y atención directa.</p>
                         </div>
-                        <button type="button" class="btn-division" onclick="openDivisionPanel('panel-inmobiliaria')">Ver Inmobiliaria</button>
+                        <button type="button" class="btn-division" onclick="openDivisionPanel('panel-inmobiliaria')">
+                            <i class="fa-solid fa-building"></i> Ver Inmobiliaria
+                        </button>
                     </div>
                 </div>
 
@@ -1184,9 +1435,11 @@
                     <div class="division-body">
                         <div>
                             <h3>02. Construcción</h3>
-                            <p>Ejecución de obras civiles (construcción, planeación, licencias), alquiler de equipos con imagen difuminada (sistemas modulares y encofrado, maquinaria, andamios) y personal capacitado.</p>
+                            <p>Ejecución de obras civiles, alquiler de equipos de construcción con imagen difuminada y personal capacitado con certificación SST y alturas.</p>
                         </div>
-                        <button type="button" class="btn-division" onclick="openDivisionPanel('panel-construccion')">Ver Construcción</button>
+                        <button type="button" class="btn-division" onclick="openDivisionPanel('panel-construccion')">
+                            <i class="fa-solid fa-helmet-safety"></i> Ver Construcción
+                        </button>
                     </div>
                 </div>
 
@@ -1195,21 +1448,23 @@
                     <div class="division-body">
                         <div>
                             <h3>03. Ingeniería y Tecnología</h3>
-                            <p>Asesoría con profesionales de distintas ingenierías, drones, topografía, modelado BIM, 3D, impresión de planos, uniformes de trabajo, publicidad, análisis, ingeniería civil y venta de proyectos.</p>
+                            <p>Asesoría con profesionales de distintas ingenierías, drones, topografía, modelado BIM, 3D, impresión de planos, uniformes, publicidad, análisis, ingeniería civil y venta de proyectos.</p>
                         </div>
-                        <button type="button" class="btn-division" onclick="openDivisionPanel('panel-ingenieria')">Ver Tecnología</button>
+                        <button type="button" class="btn-division" onclick="openDivisionPanel('panel-ingenieria')">
+                            <i class="fa-solid fa-compass-drafting"></i> Ver Tecnología
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Panel Inmobiliaria -->
+            <!-- Panel 01: Inmobiliaria -->
             <div class="portal-panel" id="panel-inmobiliaria">
                 <div class="portal-panel-top">
-                    <h3>01. NEXUS Inmobiliaria — Colombia y Portafolio</h3>
+                    <h3>01. NEXUS Inmobiliaria — Colombia &amp; Portafolio</h3>
                     <button type="button" class="btn-close-panel" onclick="closeDivisionPanel('panel-inmobiliaria')">Cerrar</button>
                 </div>
-                <p style="color: var(--gray-sub); margin-bottom: 1.5rem; line-height: 1.65;">
-                    Compra, venta, arrendamiento, captación de propiedades y oportunidades de inversión en toda Colombia (con base en Villavicencio y cobertura nacional) sin precios públicos abiertos.
+                <p style="color: var(--gray-sub); margin-bottom: 1.4rem;">
+                    Comercialización de inmuebles, compra y venta, arrendamiento, gestión inmobiliaria, captación de propiedades y oportunidades de inversión en toda Colombia (con base en Villavicencio y cobertura nacional) sin publicación de precios abiertos.
                 </p>
                 <div class="filter-bar">
                     <button type="button" class="filter-btn active" onclick="filterProp('all', this)">Todos</button>
@@ -1223,7 +1478,7 @@
                 <div class="properties-grid" id="propGrid"></div>
             </div>
 
-            <!-- Panel Construcción -->
+            <!-- Panel 02: Construcción -->
             <div class="portal-panel" id="panel-construccion">
                 <div class="portal-panel-top">
                     <h3>02. NEXUS Construcción</h3>
@@ -1233,45 +1488,51 @@
                     <div class="service-box">
                         <div>
                             <h4>Ejecución de Obras Civiles</h4>
-                            <p>Abre el recuadro emergente para elegir entre <strong>Construcción</strong>, <strong>Planeación</strong> y <strong>Licencias</strong> con botones visuales e imagen.</p>
+                            <p>Ejecución integral de proyectos civiles y edificaciones, planeación, presupuestos y trámites de licencias en Colombia, además de estructuración y venta de proyectos para clientes en EE. UU.</p>
                             <ul>
                                 <li><i class="fa-solid fa-check"></i> Construcción de obras civiles y edificaciones</li>
-                                <li><i class="fa-solid fa-check"></i> Planeación, cronogramas y presupuestos</li>
-                                <li><i class="fa-solid fa-check"></i> Licencias y trámites técnicos de proyecto</li>
+                                <li><i class="fa-solid fa-check"></i> Planeación, presupuestos y control de obra</li>
+                                <li><i class="fa-solid fa-check"></i> Gestión y trámites de licencias</li>
                             </ul>
                         </div>
-                        <button type="button" class="btn-service" onclick="openChoiceModal('civilWorks')">Ejecución de Obras Civiles</button>
+                        <button type="button" class="btn-service" onclick="openObrasCivilesModal()">
+                            <i class="fa-solid fa-images"></i> Ejecución de Obras Civiles
+                        </button>
                     </div>
 
                     <div class="service-box">
                         <div>
                             <h4>Alquiler de Equipos</h4>
-                            <p>Abre el recuadro emergente con botones de imagen difuminada para <strong>Sistemas modulares y equipos de encofrado</strong>, <strong>Maquinaria</strong> y <strong>Andamios</strong>.</p>
+                            <p>Disponibilidad de sistemas modulares y equipos de encofrado, maquinaria y andamios con botones de imagen difuminada para respaldar cada fase de obra.</p>
                             <ul>
                                 <li><i class="fa-solid fa-check"></i> Sistemas modulares y equipos de encofrado</li>
                                 <li><i class="fa-solid fa-check"></i> Maquinaria para obra civil</li>
-                                <li><i class="fa-solid fa-check"></i> Andamios certificados para trabajo seguro</li>
+                                <li><i class="fa-solid fa-check"></i> Andamios certificados para trabajo en campo</li>
                             </ul>
                         </div>
-                        <button type="button" class="btn-service" onclick="openChoiceModal('equipmentRental')">Alquiler de Equipos</button>
+                        <button type="button" class="btn-service" onclick="openAlquilerEquiposModal()">
+                            <i class="fa-solid fa-layer-group"></i> Alquiler de Equipos
+                        </button>
                     </div>
 
                     <div class="service-box">
                         <div>
                             <h4>Personal Capacitado</h4>
-                            <p>Vinculación y disponibilidad de personal de campo y cuadrillas con certificación SST y trabajo en alturas.</p>
+                            <p>Vinculación y disponibilidad de personal de campo y cuadrillas con certificación SST y trabajo en alturas para ejecución segura.</p>
                             <ul>
                                 <li><i class="fa-solid fa-check"></i> Maestros de obra</li>
                                 <li><i class="fa-solid fa-check"></i> Oficiales calificados</li>
                                 <li><i class="fa-solid fa-check"></i> Ayudantes de construcción</li>
                             </ul>
                         </div>
-                        <button type="button" class="btn-service" onclick="openDirectRequestModal('Personal Capacitado', 'Construcción')">Solicitar Personal Capacitado</button>
+                        <button type="button" class="btn-service" onclick="openQuoteModal('Personal Capacitado', 'Construcción')">
+                            <i class="fa-solid fa-users-gear"></i> Solicitar Personal Capacitado
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Panel Ingeniería y Tecnología -->
+            <!-- Panel 03: Ingeniería y Tecnología (activo por defecto con las 11 líneas) -->
             <div class="portal-panel active" id="panel-ingenieria">
                 <div class="portal-panel-top">
                     <h3>03. NEXUS Ingeniería y Tecnología — Servicios, Equipos, Apoyo y Proyectos</h3>
@@ -1288,89 +1549,49 @@
         </div>
     </section>
 
-    <!-- Modal emergente de opciones con imagen -->
-    <div class="modal-backdrop" id="choiceModal" onclick="handleBackdropClose(event, 'choiceModal')">
-        <div class="modal-box">
-            <button type="button" class="modal-close" onclick="closeModalById('choiceModal')" aria-label="Cerrar">&times;</button>
-            <span id="choiceModalKicker" style="font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bronze); font-weight: 600; display: block; margin-bottom: 0.4rem;">Opciones</span>
-            <h3 id="choiceModalTitle" style="font-size: 2rem; margin-bottom: 0.4rem;">Selecciona una Opción</h3>
-            <p id="choiceModalDesc" style="color: var(--gray-sub); font-size: 0.9rem; line-height: 1.55;"></p>
-            <div class="sub-options-grid" id="choiceModalOptions"></div>
-        </div>
-    </div>
-
-    <!-- Modal de formulario de solicitud / negociación -->
-    <div class="modal-backdrop" id="requestFormModal" onclick="handleBackdropClose(event, 'requestFormModal')">
-        <div class="modal-box compact-modal">
-            <button type="button" class="modal-close" onclick="closeModalById('requestFormModal')" aria-label="Cerrar">&times;</button>
-            <span id="reqModalCategory" style="font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bronze); font-weight: 600; display: block; margin-bottom: 0.35rem;">Solicitud / Negociación</span>
-            <h3 id="reqModalTitle" style="font-size: 1.85rem; margin-bottom: 0.4rem;">Cotizar o Negociar</h3>
-            <p style="color: var(--gray-sub); font-size: 0.88rem; margin-bottom: 1.4rem;">Completa tus datos para generar el aviso por correo electrónico o abrir WhatsApp.</p>
-            <form id="modalRequestForm" onsubmit="handleModalRequestSubmit(event)">
-                <div class="input-group">
-                    <label for="mName">Nombre Completo *</label>
-                    <input type="text" id="mName" required placeholder="Tu nombre completo">
-                </div>
-                <div class="input-group">
-                    <label for="mPhone">Teléfono / WhatsApp *</label>
-                    <input type="tel" id="mPhone" required placeholder="+1 415 589 9579 o +57 300 000 0000">
-                </div>
-                <div class="input-group">
-                    <label for="mEmail">Correo Electrónico *</label>
-                    <input type="email" id="mEmail" required placeholder="correo@ejemplo.com">
-                </div>
-                <div class="input-group">
-                    <label for="mRegion">País / Ubicación *</label>
-                    <select id="mRegion" required>
-                        <option value="Estados Unidos — Cliente / Proyecto EE. UU.">Estados Unidos — Cliente / Proyecto EE. UU.</option>
-                        <option value="Colombia — Toda Colombia">Colombia — Toda Colombia</option>
-                        <option value="Colombia — Villavicencio / Meta">Colombia — Villavicencio / Meta</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="mSchedule">Horario Disponible para Contacto / Negociación *</label>
-                    <input type="text" id="mSchedule" required placeholder="Ej. Lunes a viernes, 9:00 a.m. - 1:00 p.m.">
-                </div>
-                <div class="input-group">
-                    <label for="mDesc">Detalles del Proyecto, Servicio o Requerimiento *</label>
-                    <textarea id="mDesc" rows="3" required placeholder="Describe el proyecto, servicio, ubicación o negociación..."></textarea>
-                </div>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="mAuth" required>
-                    <label for="mAuth">Autorizo el tratamiento de mis datos personales para la atención de esta solicitud.</label>
-                </div>
-                <button type="submit" class="btn-submit">Generar Aviso por Correo y WhatsApp</button>
-                <div class="form-success-msg" id="modalRequestSuccess">
-                    <div>Aviso preparado para <strong id="modalSelectedLabel"></strong>:</div>
-                    <div class="action-links-row">
-                        <a id="modalMailLink" href="#" class="btn-action-link btn-email-link">Enviar Aviso por Correo</a>
-                        <a id="modalWaLink" href="#" target="_blank" rel="noopener" class="btn-action-link btn-wa-link">Ir a WhatsApp</a>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Sección de contacto directo -->
+    <!-- Formularios principales de contacto y negociación -->
     <section style="background: var(--stone); padding: 5.5rem 0;" id="contacto">
         <div class="container" style="padding-top: 0; padding-bottom: 0;">
             <div class="section-header">
-                <span>Contacto, Proyectos y Alianzas</span>
+                <span>Contacto, Negociación y Oportunidades</span>
                 <h2>Conexión desde Colombia y Estados Unidos</h2>
-                <p>Completa el formulario para contactar desde Colombia, ofrecer servicios o negociar y vender proyectos a clientes en Estados Unidos.</p>
+                <p>Completa el formulario para contactar desde Colombia, ofrecer servicios o negociar y vender proyectos a clientes en Estados Unidos. Todos los mensajes se dirigen a <strong>nexusintech2026@gmail.com</strong> y WhatsApp <strong>+1 415 589 9579</strong>.</p>
+            </div>
+
+            <div class="direct-email-banner">
+                <div>
+                    <span class="tech-func-label">Correo Oficial y WhatsApp Directo</span>
+                    <strong>nexusintech2026@gmail.com &bull; WhatsApp: +1 415 589 9579</strong>
+                    <p>Todos los formularios, cotizaciones y consultas se preparan y envían directamente a <strong>nexusintech2026@gmail.com</strong> o vía WhatsApp al <strong>+1 415 589 9579</strong>.</p>
+                </div>
+                <div class="action-links-row" style="margin-top: 0;">
+                    <a href="mailto:nexusintech2026@gmail.com?subject=Contacto%20Directo%20NEXUS%20Intech" class="btn-action-link btn-email-link">
+                        <i class="fa-solid fa-envelope"></i> Escribir a nexusintech2026@gmail.com
+                    </a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nexusintech2026@gmail.com&su=Contacto%20Directo%20NEXUS%20Intech" target="_blank" rel="noopener" class="btn-action-link btn-gmail-link">
+                        <i class="fa-brands fa-google"></i> Abrir Gmail
+                    </a>
+                    <a href="https://wa.me/14155899579?text=Hola%20NEXUS%20Intech%2C%20me%20comunico%20desde%20la%20p%C3%A1gina%20web%20para%20consultar%20un%20proyecto%20o%20servicio." target="_blank" rel="noopener" class="btn-action-link btn-wa-link">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp +1 415 589 9579
+                    </a>
+                    <button type="button" class="btn-action-link btn-copy-link" onclick="copyNexusEmail('bannerCopyStatus')">
+                        <i class="fa-regular fa-copy"></i> Copiar Correo
+                    </button>
+                </div>
+                <div id="bannerCopyStatus" style="width: 100%; font-size: 0.78rem; color: var(--bronze); font-weight: 600;"></div>
             </div>
 
             <div class="forms-container-grid">
                 <div class="form-card">
                     <h3>Clientes y Negociación de Proyectos (Colombia &amp; EE. UU.)</h3>
-                    <p>Para clientes en toda Colombia y clientes en Estados Unidos interesados en proyectos, ingeniería civil, venta de proyectos, asesorías, drones, topografía, BIM, 3D, planos, uniformes, publicidad o análisis.</p>
+                    <p>Para clientes en toda Colombia y clientes en Estados Unidos interesados en proyectos, ingeniería civil, venta de proyectos, asesorías, drones, topografía, BIM, 3D, planos, uniformes, publicidad o análisis. Envío directo a <strong>nexusintech2026@gmail.com</strong>.</p>
                     <form id="clientForm" onsubmit="handleClientSubmit(event)">
                         <div class="input-group">
                             <label for="cName">Nombre Completo *</label>
                             <input type="text" id="cName" required placeholder="Nombre y apellido">
                         </div>
                         <div class="input-group">
-                            <label for="cPhone">Teléfono / WhatsApp *</label>
+                            <label for="cPhone">Teléfono / WhatsApp (con indicativo) *</label>
                             <input type="tel" id="cPhone" required placeholder="+1 415 589 9579 o +57 300 000 0000">
                         </div>
                         <div class="input-group">
@@ -1378,11 +1599,14 @@
                             <input type="email" id="cEmail" required placeholder="correo@ejemplo.com">
                         </div>
                         <div class="input-group">
-                            <label for="cRegion">País / Ciudad *</label>
+                            <label for="cRegion">País / Ciudad de Origen o Proyecto *</label>
                             <select id="cRegion" required>
                                 <option value="Estados Unidos — Cliente / Proyecto EE. UU.">Estados Unidos — Cliente / Proyecto EE. UU.</option>
                                 <option value="Colombia — Villavicencio / Meta">Colombia — Villavicencio / Meta</option>
-                                <option value="Colombia — Toda Colombia (Bogotá, Medellín, etc.)">Colombia — Toda Colombia (Bogotá, Medellín, etc.)</option>
+                                <option value="Colombia — Bogotá / Cundinamarca">Colombia — Bogotá / Cundinamarca</option>
+                                <option value="Colombia — Medellín / Antioquia">Colombia — Medellín / Antioquia</option>
+                                <option value="Colombia — Otras Ciudades / Nacional">Colombia — Otras Ciudades / Nacional</option>
+                                <option value="Conexión Internacional Colombia - EE. UU.">Conexión Internacional Colombia - EE. UU.</option>
                             </select>
                         </div>
                         <div class="input-group">
@@ -1398,38 +1622,59 @@
                                 <option value="Publicidad">Publicidad</option>
                                 <option value="Análisis">Análisis</option>
                                 <option value="Ingeniería Civil">Ingeniería Civil</option>
-                                <option value="Venta de Proyectos (EE. UU. / Colombia)">Venta de Proyectos (EE. UU. / Colombia)</option>
-                                <option value="Ejecución de Obras Civiles">Ejecución de Obras Civiles</option>
+                                <option value="Venta y Negociación de Proyectos (EE. UU. / Colombia)">Venta y Negociación de Proyectos (EE. UU. / Colombia)</option>
+                                <option value="Construcción — Ejecución de Obras Civiles">Construcción — Ejecución de Obras Civiles</option>
                                 <option value="Alquiler de Equipos">Alquiler de Equipos</option>
                                 <option value="Inmobiliaria">Inmobiliaria</option>
                             </select>
                         </div>
                         <div class="input-group">
-                            <label for="cSchedule">Horario Disponible *</label>
-                            <input type="text" id="cSchedule" required placeholder="Ej. Lunes a viernes, 10:00 a.m. - 2:00 p.m.">
+                            <label for="cType">Tipo de Cliente *</label>
+                            <select id="cType" required>
+                                <option value="Cliente / Comprador de Proyecto (EE. UU.)">Cliente / Comprador de Proyecto (EE. UU.)</option>
+                                <option value="Comprador">Comprador</option>
+                                <option value="Cliente / Particular">Cliente / Particular</option>
+                                <option value="Constructor / Contratista">Constructor / Contratista</option>
+                                <option value="Empresa">Empresa</option>
+                            </select>
                         </div>
                         <div class="input-group">
-                            <label for="cDesc">Descripción del Proyecto o Solicitud *</label>
-                            <textarea id="cDesc" rows="3" required placeholder="Indica alcances, proyecto a negociar o servicio requerido..."></textarea>
+                            <label for="cSchedule">Horario Disponible para Llamada / Negociación *</label>
+                            <input type="text" id="cSchedule" required placeholder="Ej. Lunes a viernes, 9:00 a.m. - 12:00 m. (EST / COT)">
+                        </div>
+                        <div class="input-group">
+                            <label for="cDesc">Descripción del Proyecto, Necesidad o Negociación *</label>
+                            <textarea id="cDesc" rows="3" required placeholder="Describe el proyecto, servicio, ubicación o negociación que deseas realizar..."></textarea>
                         </div>
                         <div class="checkbox-group">
                             <input type="checkbox" id="cAuth" required>
-                            <label for="cAuth">Autorizo el tratamiento de mis datos personales conforme a la política de NEXUS Intech.</label>
+                            <label for="cAuth">Autorizo el tratamiento de mis datos personales conforme a la política de privacidad de NEXUS Intech.</label>
                         </div>
-                        <button type="submit" class="btn-submit">Generar Aviso y Enlaces</button>
+                        <button type="submit" class="btn-submit">Generar Aviso y Enlaces a nexusintech2026@gmail.com</button>
                         <div class="form-success-msg" id="clientSuccess">
-                            <div>Solicitud lista para enviar:</div>
+                            <div>Mensaje listo para <strong>nexusintech2026@gmail.com</strong> y WhatsApp <strong>+1 415 589 9579</strong>:</div>
                             <div class="action-links-row">
-                                <a id="clientMailLink" href="#" class="btn-action-link btn-email-link">Enviar Aviso por Correo</a>
-                                <a id="clientWaLink" href="#" target="_blank" rel="noopener" class="btn-action-link btn-wa-link">Responder por WhatsApp</a>
+                                <a id="clientMailLink" href="#" class="btn-action-link btn-email-link">
+                                    <i class="fa-solid fa-envelope"></i> Enviar por Correo a nexusintech2026@gmail.com
+                                </a>
+                                <a id="clientGmailLink" href="#" target="_blank" rel="noopener" class="btn-action-link btn-gmail-link">
+                                    <i class="fa-brands fa-google"></i> Abrir en Gmail
+                                </a>
+                                <a id="clientWaLink" href="#" target="_blank" rel="noopener" class="btn-action-link btn-wa-link">
+                                    <i class="fa-brands fa-whatsapp"></i> WhatsApp (+1 415 589 9579)
+                                </a>
+                                <button type="button" class="btn-action-link btn-copy-link" onclick="copyNexusEmail('clientCopyStatus')">
+                                    <i class="fa-regular fa-copy"></i> Copiar Correo
+                                </button>
                             </div>
+                            <div id="clientCopyStatus" style="margin-top: 0.5rem; font-size: 0.78rem; color: var(--bronze); font-weight: 600;"></div>
                         </div>
                     </form>
                 </div>
 
                 <div class="form-card">
                     <h3>Propietarios, Aliados e Inversionistas</h3>
-                    <p>Para aliados, proveedores de equipos, contratistas, propietarios e inversionistas en Colombia o Estados Unidos.</p>
+                    <p>Dirigido a propietarios, inversionistas, proveedores, contratistas, profesionales y socios estratégicos en Colombia o Estados Unidos. Envío directo a <strong>nexusintech2026@gmail.com</strong>.</p>
                     <form id="partnerForm" onsubmit="handlePartnerSubmit(event)">
                         <div class="input-group">
                             <label for="pName">Nombre Completo / Empresa *</label>
@@ -1444,7 +1689,7 @@
                             <input type="email" id="pEmail" required placeholder="contacto@ejemplo.com">
                         </div>
                         <div class="input-group">
-                            <label for="pRegion">País / Ciudad *</label>
+                            <label for="pRegion">País / Ciudad de Operación *</label>
                             <select id="pRegion" required>
                                 <option value="Colombia — Cobertura Nacional">Colombia — Cobertura Nacional</option>
                                 <option value="Estados Unidos">Estados Unidos</option>
@@ -1452,33 +1697,57 @@
                             </select>
                         </div>
                         <div class="input-group">
-                            <label for="pService">Línea de Vinculación *</label>
+                            <label for="pService">Servicio o Línea de Vinculación *</label>
                             <select id="pService" required>
-                                <option value="Venta y Estructuración de Proyectos">Venta y Estructuración de Proyectos</option>
-                                <option value="Ingeniería Civil, Asesorías y Análisis">Ingeniería Civil, Asesorías y Análisis</option>
-                                <option value="Alianza de Equipos (Encofrado, Maquinaria, Andamios)">Alianza de Equipos (Encofrado, Maquinaria, Andamios)</option>
-                                <option value="Captación de Inmuebles">Captación de Inmuebles</option>
+                                <option value="Captación de Inmuebles">Captación / Publicación de Inmuebles</option>
+                                <option value="Venta y Negociación de Proyectos">Venta y Negociación de Proyectos</option>
+                                <option value="Alianza de Equipos (Encofrado, Maquinaria, Andamios)">Alianza — Alquiler de Equipos de Construcción</option>
+                                <option value="Personal y Cuadrillas Certificadas">Alianza — Personal y Cuadrillas Certificadas</option>
+                                <option value="Ingeniería Civil, Asesorías y Análisis">Alianza — Ingeniería Civil, Asesorías y Análisis</option>
+                                <option value="Inversión y Visión Empresarial">Inversión y Visión Empresarial</option>
                             </select>
                         </div>
                         <div class="input-group">
-                            <label for="pSchedule">Horario Disponible *</label>
-                            <input type="text" id="pSchedule" required placeholder="Ej. Martes y jueves, 3:00 p.m. - 6:00 p.m.">
+                            <label for="pType">Tipo de Aliado / Participante *</label>
+                            <select id="pType" required>
+                                <option value="Propietario">Propietario</option>
+                                <option value="Inversionista">Inversionista</option>
+                                <option value="Proveedor">Proveedor</option>
+                                <option value="Contratista">Contratista</option>
+                                <option value="Profesional">Profesional</option>
+                                <option value="Socio Estratégico">Socio Estratégico</option>
+                            </select>
                         </div>
                         <div class="input-group">
-                            <label for="pDesc">Propuesta, Proyecto o Activos *</label>
-                            <textarea id="pDesc" rows="3" required placeholder="Describe tu propuesta, equipo o proyecto..."></textarea>
+                            <label for="pSchedule">Horario Disponible para Devolver Llamada *</label>
+                            <input type="text" id="pSchedule" required placeholder="Ej. Martes y jueves, 2:00 p.m. - 5:00 p.m.">
+                        </div>
+                        <div class="input-group">
+                            <label for="pDesc">Descripción de la Necesidad / Propuesta o Activos *</label>
+                            <textarea id="pDesc" rows="3" required placeholder="Detalla tu perfil, inmueble, proyecto, equipo o propuesta de colaboración..."></textarea>
                         </div>
                         <div class="checkbox-group">
                             <input type="checkbox" id="pAuth" required>
-                            <label for="pAuth">Autorizo el tratamiento de mis datos personales conforme a la política de NEXUS Intech.</label>
+                            <label for="pAuth">Autorizo el tratamiento de mis datos personales conforme a la política de privacidad de NEXUS Intech.</label>
                         </div>
-                        <button type="submit" class="btn-submit">Generar Aviso de Alianza</button>
+                        <button type="submit" class="btn-submit">Generar Aviso de Alianza a nexusintech2026@gmail.com</button>
                         <div class="form-success-msg" id="partnerSuccess">
-                            <div>Postulación lista para enviar:</div>
+                            <div>Postulación lista para <strong>nexusintech2026@gmail.com</strong> y WhatsApp <strong>+1 415 589 9579</strong>:</div>
                             <div class="action-links-row">
-                                <a id="partnerMailLink" href="#" class="btn-action-link btn-email-link">Enviar Aviso por Correo</a>
-                                <a id="partnerWaLink" href="#" target="_blank" rel="noopener" class="btn-action-link btn-wa-link">Responder por WhatsApp</a>
+                                <a id="partnerMailLink" href="#" class="btn-action-link btn-email-link">
+                                    <i class="fa-solid fa-envelope"></i> Enviar por Correo a nexusintech2026@gmail.com
+                                </a>
+                                <a id="partnerGmailLink" href="#" target="_blank" rel="noopener" class="btn-action-link btn-gmail-link">
+                                    <i class="fa-brands fa-google"></i> Abrir en Gmail
+                                </a>
+                                <a id="partnerWaLink" href="#" target="_blank" rel="noopener" class="btn-action-link btn-wa-link">
+                                    <i class="fa-brands fa-whatsapp"></i> WhatsApp (+1 415 589 9579)
+                                </a>
+                                <button type="button" class="btn-action-link btn-copy-link" onclick="copyNexusEmail('partnerCopyStatus')">
+                                    <i class="fa-regular fa-copy"></i> Copiar Correo
+                                </button>
                             </div>
+                            <div id="partnerCopyStatus" style="margin-top: 0.5rem; font-size: 0.78rem; color: var(--bronze); font-weight: 600;"></div>
                         </div>
                     </form>
                 </div>
@@ -1486,8 +1755,190 @@
         </div>
     </section>
 
+    <!-- Modal 1: Ejecución de obras civiles -->
+    <div class="modal-backdrop" id="obrasCivilesModal" onclick="handleBackdropClick(event, 'obrasCivilesModal')">
+        <div class="modal-box">
+            <button type="button" class="modal-close" onclick="closeModalById('obrasCivilesModal')" aria-label="Cerrar">&times;</button>
+            <div class="modal-header-block">
+                <span>NEXUS Construcción &bull; Recuadro Emergente</span>
+                <h3>Ejecución de Obras Civiles</h3>
+                <p>Selecciona la especialidad que deseas cotizar o negociar para abrir el formulario de cotización/negociación preseleccionado.</p>
+            </div>
+
+            <div class="visual-choice-grid">
+                <button type="button" class="visual-choice-btn" onclick="selectVisualChoice('Ejecución de Obras Civiles — Construcción', 'Construcción')">
+                    <div class="choice-photo" style="background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=85');"></div>
+                    <div class="choice-overlay"></div>
+                    <div class="choice-content">
+                        <span class="choice-badge">Obra en Campo</span>
+                        <span class="choice-title">Construcción</span>
+                        <span class="choice-sub">Ejecución de obras civiles, estructuras, acabados y proyectos.</span>
+                    </div>
+                </button>
+
+                <button type="button" class="visual-choice-btn" onclick="selectVisualChoice('Ejecución de Obras Civiles — Planeación', 'Construcción')">
+                    <div class="choice-photo" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=85');"></div>
+                    <div class="choice-overlay"></div>
+                    <div class="choice-content">
+                        <span class="choice-badge">Estructuración</span>
+                        <span class="choice-title">Planeación</span>
+                        <span class="choice-sub">Cronogramas, presupuestos, cantidades de obra y control.</span>
+                    </div>
+                </button>
+
+                <button type="button" class="visual-choice-btn" onclick="selectVisualChoice('Ejecución de Obras Civiles — Licencias', 'Construcción')">
+                    <div class="choice-photo" style="background-image: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=900&q=85');"></div>
+                    <div class="choice-overlay"></div>
+                    <div class="choice-content">
+                        <span class="choice-badge">Trámites y Normativa</span>
+                        <span class="choice-title">Licencias</span>
+                        <span class="choice-sub">Gestión documental, licenciamiento y viabilidad normativa.</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Alquiler de equipos con imagen difuminada -->
+    <div class="modal-backdrop" id="alquilerEquiposModal" onclick="handleBackdropClick(event, 'alquilerEquiposModal')">
+        <div class="modal-box">
+            <button type="button" class="modal-close" onclick="closeModalById('alquilerEquiposModal')" aria-label="Cerrar">&times;</button>
+            <div class="modal-header-block">
+                <span>NEXUS Construcción &bull; Recuadro Emergente</span>
+                <h3>Alquiler de Equipos</h3>
+                <p>Elige la categoría de equipos con imagen difuminada para abrir el formulario de cotización/negociación preseleccionado.</p>
+            </div>
+
+            <div class="visual-choice-grid">
+                <button type="button" class="visual-choice-btn blurred-style" onclick="selectVisualChoice('Alquiler de Equipos — Sistemas modulares y equipos de encofrado', 'Alquiler de Equipos')">
+                    <div class="choice-photo" style="background-image: url('https://images.unsplash.com/photo-1590069261209-f8e9b8642343?auto=format&fit=crop&w=900&q=85');"></div>
+                    <div class="choice-overlay"></div>
+                    <div class="choice-content">
+                        <span class="choice-badge">Encofrado</span>
+                        <span class="choice-title">Sistemas modulares y equipos de encofrado</span>
+                        <span class="choice-sub">Formaleta modular, parales y sistemas de vaciado estructural.</span>
+                    </div>
+                </button>
+
+                <button type="button" class="visual-choice-btn blurred-style" onclick="selectVisualChoice('Alquiler de Equipos — Maquinaria', 'Alquiler de Equipos')">
+                    <div class="choice-photo" style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=900&q=85');"></div>
+                    <div class="choice-overlay"></div>
+                    <div class="choice-content">
+                        <span class="choice-badge">Equipos de Obra</span>
+                        <span class="choice-title">Maquinaria</span>
+                        <span class="choice-sub">Maquinaria y equipos operativos para movimiento y obra civil.</span>
+                    </div>
+                </button>
+
+                <button type="button" class="visual-choice-btn blurred-style" onclick="selectVisualChoice('Alquiler de Equipos — Andamios', 'Alquiler de Equipos')">
+                    <div class="choice-photo" style="background-image: url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=85');"></div>
+                    <div class="choice-overlay"></div>
+                    <div class="choice-content">
+                        <span class="choice-badge">Altura y Acceso</span>
+                        <span class="choice-title">Andamios</span>
+                        <span class="choice-sub">Sistemas de andamiaje modular para fachadas e instalaciones.</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3: Opciones visuales para las 11 líneas de ingeniería y tecnología -->
+    <div class="modal-backdrop" id="techChoiceModal" onclick="handleBackdropClick(event, 'techChoiceModal')">
+        <div class="modal-box">
+            <button type="button" class="modal-close" onclick="closeModalById('techChoiceModal')" aria-label="Cerrar">&times;</button>
+            <div class="modal-header-block">
+                <span id="techModalKicker">NEXUS Ingeniería y Tecnología</span>
+                <h3 id="techModalTitle">Selecciona una Opción</h3>
+                <p id="techModalDesc">Elige la modalidad o alcance que necesitas para abrir el formulario de cotización o negociación.</p>
+            </div>
+            <div class="visual-choice-grid" id="techModalOptions"></div>
+        </div>
+    </div>
+
+    <!-- Modal 4: Formulario de cotización / negociación preseleccionado -->
+    <div class="modal-backdrop" id="quoteModal" onclick="handleBackdropClick(event, 'quoteModal')">
+        <div class="modal-box narrow">
+            <button type="button" class="modal-close" onclick="closeModalById('quoteModal')" aria-label="Cerrar">&times;</button>
+            <div class="modal-header-block">
+                <span id="quoteModalCategory">Cotización y Negociación</span>
+                <h3 id="quoteModalTitle">Formulario de Cotización / Negociación</h3>
+                <p>Opción preseleccionada lista para enviar a <strong>nexusintech2026@gmail.com</strong> o por WhatsApp <strong>+1 415 589 9579</strong>.</p>
+            </div>
+
+            <form id="quoteModalForm" onsubmit="handleQuoteModalSubmit(event)">
+                <div class="input-group">
+                    <label for="qSelectedOption">Opción / Servicio Preseleccionado *</label>
+                    <input type="text" id="qSelectedOption" required readonly style="background: var(--stone); font-weight: 600;">
+                </div>
+                <div class="input-group">
+                    <label for="qName">Nombre Completo / Empresa *</label>
+                    <input type="text" id="qName" required placeholder="Tu nombre o razón social">
+                </div>
+                <div class="input-group">
+                    <label for="qPhone">Teléfono / WhatsApp *</label>
+                    <input type="tel" id="qPhone" required placeholder="+1 415 589 9579 o +57 300 000 0000">
+                </div>
+                <div class="input-group">
+                    <label for="qEmail">Correo Electrónico *</label>
+                    <input type="email" id="qEmail" required placeholder="correo@ejemplo.com">
+                </div>
+                <div class="input-group">
+                    <label for="qRegion">País / Ubicación del Proyecto *</label>
+                    <select id="qRegion" required>
+                        <option value="Colombia — Toda Colombia">Colombia — Toda Colombia</option>
+                        <option value="Estados Unidos">Estados Unidos</option>
+                        <option value="Colombia — Villavicencio / Meta">Colombia — Villavicencio / Meta</option>
+                        <option value="Conexión Internacional Colombia - EE. UU.">Conexión Internacional Colombia - EE. UU.</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="qType">Perfil / Tipo de Cliente *</label>
+                    <select id="qType" required>
+                        <option value="Cliente / Particular">Cliente / Particular</option>
+                        <option value="Comprador de Proyecto (EE. UU. / Colombia)">Comprador de Proyecto (EE. UU. / Colombia)</option>
+                        <option value="Constructor / Contratista">Constructor / Contratista</option>
+                        <option value="Propietario">Propietario</option>
+                        <option value="Empresa">Empresa</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="qSchedule">Horario Disponible para Llamada / Negociación *</label>
+                    <input type="text" id="qSchedule" required placeholder="Ej. Hoy de 2:00 p.m. a 5:00 p.m. (COT / EST)">
+                </div>
+                <div class="input-group">
+                    <label for="qDesc">Detalles de la Cotización, Alcance o Negociación *</label>
+                    <textarea id="qDesc" rows="3" required placeholder="Indica ubicación, cantidades, tiempos de alquiler o detalles del proyecto..."></textarea>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="qAuth" required>
+                    <label for="qAuth">Autorizo el tratamiento de mis datos personales para la atención de esta cotización o negociación.</label>
+                </div>
+                <button type="submit" class="btn-submit">Generar Aviso por Correo y WhatsApp</button>
+                <div class="form-success-msg" id="quoteSuccess">
+                    <div>Cotización/negociación lista para <strong>nexusintech2026@gmail.com</strong> — <strong id="quoteSuccessLabel"></strong>:</div>
+                    <div class="action-links-row">
+                        <a id="quoteMailLink" href="#" class="btn-action-link btn-email-link">
+                            <i class="fa-solid fa-envelope"></i> Enviar por Correo (nexusintech2026@gmail.com)
+                        </a>
+                        <a id="quoteGmailLink" href="#" target="_blank" rel="noopener" class="btn-action-link btn-gmail-link">
+                            <i class="fa-brands fa-google"></i> Abrir en Gmail
+                        </a>
+                        <a id="quoteWaLink" href="#" target="_blank" rel="noopener" class="btn-action-link btn-wa-link">
+                            <i class="fa-brands fa-whatsapp"></i> WhatsApp (+1 415 589 9579)
+                        </a>
+                        <button type="button" class="btn-action-link btn-copy-link" onclick="copyNexusEmail('quoteCopyStatus')">
+                            <i class="fa-regular fa-copy"></i> Copiar Correo
+                        </button>
+                    </div>
+                    <div id="quoteCopyStatus" style="margin-top: 0.5rem; font-size: 0.78rem; color: var(--bronze); font-weight: 600;"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Botón flotante de WhatsApp -->
-    <a href="https://wa.me/14155899579?text=Hola%20NEXUS%20Intech%2C%20deseo%20informaci%C3%B3n%20sobre%20sus%20servicios%20o%20proyectos%20(Colombia%20%2F%20EE.%20UU.)." target="_blank" rel="noopener" class="whatsapp-float" aria-label="WhatsApp">
+    <a href="https://wa.me/14155899579?text=Hola%20NEXUS%20Intech%20(nexusintech2026%40gmail.com)%2C%20deseo%20informaci%C3%B3n%20sobre%20sus%20servicios%20o%20proyectos%20(Colombia%20%2F%20EE.%20UU.)." target="_blank" rel="noopener" class="whatsapp-float" aria-label="WhatsApp +1 415 589 9579" title="WhatsApp NEXUS Intech: +1 415 589 9579">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
@@ -1496,8 +1947,14 @@
         <div class="footer-content">
             <div class="footer-col">
                 <h3>NEXUS Intech</h3>
-                <p>Plataforma con alcance en toda Colombia (base en Villavicencio) y conexión con Estados Unidos para gestión inmobiliaria, construcción, alquiler de equipos, ingeniería civil, venta de proyectos y tecnología.</p>
-                <p style="margin-top: 1rem; color: var(--white); font-weight: 500;">Ingeniero Diego Hoyos — Project Manager, CEO</p>
+                <p>Plataforma corporativa con operación en toda Colombia (base en Villavicencio) y conexión en Estados Unidos, enfocada en gestión inmobiliaria, construcción, alquiler de equipos, cuadrillas certificadas, ingeniería aplicada y venta/negociación de proyectos.</p>
+                <p style="margin-top: 1rem; color: var(--white); font-weight: 600;">Ingeniero Diego Hoyos — Project Manager, CEO</p>
+                <p style="margin-top: 0.45rem; color: var(--bronze-light); font-weight: 500;">
+                    Correo directo: <a href="mailto:nexusintech2026@gmail.com" style="color: var(--white); text-decoration: underline;">nexusintech2026@gmail.com</a>
+                </p>
+                <p style="margin-top: 0.35rem; color: var(--bronze-light); font-weight: 500;">
+                    WhatsApp directo: <a href="https://wa.me/14155899579?text=Hola%20NEXUS%20Intech%2C%20deseo%20informaci%C3%B3n%20sobre%20sus%20servicios." target="_blank" rel="noopener" style="color: var(--white); text-decoration: underline;">+1 415 589 9579</a>
+                </p>
             </div>
             <div class="footer-col">
                 <h3>Divisiones</h3>
@@ -1508,289 +1965,38 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <h3>Alcance y Contacto</h3>
+                <h3>Institucional y Cobertura</h3>
                 <ul>
+                    <li><a href="#institucional">Nosotros, Misión y Visión</a></li>
                     <li><a href="#cobertura-internacional">Colombia &amp; Estados Unidos</a></li>
                     <li><a href="#contacto">Contacto y Negociación</a></li>
+                    <li><a href="mailto:nexusintech2026@gmail.com">nexusintech2026@gmail.com</a></li>
+                    <li><a href="https://wa.me/14155899579?text=Hola%20NEXUS%20Intech%2C%20me%20gustar%C3%ADa%20contactarlos." target="_blank" rel="noopener">WhatsApp: +1 415 589 9579</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 NEXUS Intech &bull; Ingeniero Diego Hoyos (Project Manager, CEO). Colombia &amp; Estados Unidos.</p>
+            <p>&copy; 2026 NEXUS Intech &bull; Ingeniero Diego Hoyos (Project Manager, CEO) &bull; nexusintech2026@gmail.com &bull; WhatsApp: +1 415 589 9579. Colombia &amp; Estados Unidos.</p>
             <p>Ingeniería &bull; Arquitectura &bull; Gestión Patrimonial</p>
         </div>
     </footer>
 
     <script>
-        const NEXUS_EMAIL = 'diegohoyos2312@gmail.com';
+        const NEXUS_EMAIL = 'nexusintech2026@gmail.com';
         const NEXUS_WHATSAPP = '14155899579';
-        let selectedServiceLabel = 'Servicio NEXUS Intech';
 
-        // Portafolio inmobiliario
-        const properties = [
-            { id: 1, type: 'casa', title: 'Residencia Barzal Alto', location: 'Villavicencio, Meta — Colombia', desc: 'Vivienda de diseño contemporáneo con distribución funcional y zonas sociales.', img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=700&q=80', tag: 'Venta' },
-            { id: 2, type: 'casa', title: 'Vivienda La Primavera', location: 'Vía Catama, Villavicencio — Colombia', desc: 'Espacios amplios, iluminación natural y entorno residencial consolidado.', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=80', tag: 'Venta' },
-            { id: 3, type: 'apartamento', title: 'Apartamento Panorama', location: 'Centro, Villavicencio — Colombia', desc: 'Ubicación urbana estratégica con buena ventilación y acceso rápido a servicios.', img: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=700&q=80', tag: 'Venta' },
-            { id: 4, type: 'apartamento', title: 'Apartamento Altavista', location: 'Villavicencio — Colombia', desc: 'Distribución práctica, seguridad y cercanía a corredores principales.', img: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=700&q=80', tag: 'Alquiler' },
-            { id: 5, type: 'finca', title: 'Finca El Encanto', location: 'Guayuriba, Villavicencio — Colombia', desc: 'Predio rural con áreas productivas, zonas verdes y acceso vehicular.', img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=700&q=80', tag: 'Venta' },
-            { id: 6, type: 'finca', title: 'Finca San Francisco', location: 'Vía Puerto López, Meta — Colombia', desc: 'Terreno amplio con espacios recreativos y proyección agropecuaria.', img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=700&q=80', tag: 'Venta' },
-            { id: 7, type: 'lote', title: 'Lote Corredor Vial', location: 'Anillo Vial, Meta — Colombia', desc: 'Terreno con frente sobre vía y potencial para desarrollo comercial o de servicios.', img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=700&q=80', tag: 'Venta' },
-            { id: 8, type: 'lote', title: 'Lote Quintas de la Sabana', location: 'Vía Acacías, Meta — Colombia', desc: 'Lote en sector residencial con disponibilidad para proyecto constructivo.', img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=700&q=80', tag: 'Venta' },
-            { id: 9, type: 'local', title: 'Local Comercial Centro', location: 'Villavicencio — Colombia', desc: 'Espacio comercial adaptable para atención al público, oficina o comercio.', img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=700&q=80', tag: 'Comercial' },
-            { id: 10, type: 'alquiler', title: 'Vivienda en Arrendamiento', location: 'Quintas de San Fernando, Colombia', desc: 'Inmueble disponible para arrendamiento con gestión de NEXUS Intech.', img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=700&q=80', tag: 'Alquiler' }
-        ];
+        // Menú móvil
+        function toggleMobileMenu() {
+            const nav = document.getElementById('navLinks');
+            if (nav) nav.classList.toggle('open');
+        }
 
-        // Servicios organizados en Ingeniería y Tecnología
-        const TECH_SERVICES = [
-            {
-                key: 'advisory',
-                num: '01',
-                pill: 'Asesoría Técnica',
-                title: 'Asesoría con Profesionales en Diferentes Ingenierías',
-                fn: 'Sirve para consultar y resolver dudas técnicas o de gestión con especialistas en civil, estructural, costos y redes/especialidades.',
-                btnText: 'Ver Opciones de Asesoría',
-                img: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80'
-            },
-            {
-                key: 'drones',
-                num: '02',
-                pill: 'Captura Aérea',
-                title: 'Levantamientos con Drones',
-                fn: 'Sirve para obtener mapas aéreos, ortofotos, cálculo de volúmenes y seguimiento visual rápido de terrenos y obras.',
-                btnText: 'Ver Opciones con Drones',
-                img: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=800&q=80'
-            },
-            {
-                key: 'topography',
-                num: '03',
-                pill: 'Medición en Campo',
-                title: 'Topografía',
-                fn: 'Sirve para medir terrenos, curvas de nivel, linderos y realizar replanteos precisos en campo.',
-                btnText: 'Ver Opciones de Topografía',
-                img: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80'
-            },
-            {
-                key: 'bim',
-                num: '04',
-                pill: 'Gemelo Digital',
-                title: 'Modelado BIM',
-                fn: 'Sirve para crear modelos coordinados, detectar choques antes de construir y extraer cantidades de obra.',
-                btnText: 'Ver Opciones de BIM',
-                img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80'
-            },
-            {
-                key: 'threeD',
-                num: '05',
-                pill: 'Visualización',
-                title: 'Modelado y Visualización 3D',
-                fn: 'Sirve para mostrar cómo quedará el proyecto con renders realistas, recorridos 3D y presentaciones visuales.',
-                btnText: 'Ver Opciones 3D',
-                img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80'
-            },
-            {
-                key: 'plans',
-                num: '06',
-                pill: 'Plotteo y Entregas',
-                title: 'Impresión de Planos',
-                fn: 'Sirve para plottear planos en gran formato, doblarlos y entregar carpetas listas para obra o revisión.',
-                btnText: 'Ver Opciones de Planos',
-                img: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80'
-            },
-            {
-                key: 'uniforms',
-                num: '07',
-                pill: 'Dotación y Marca',
-                title: 'Uniformes de Trabajo',
-                fn: 'Sirve para dotar y uniformar equipos de obra, chalecos reflectivos y prendas con identidad corporativa.',
-                btnText: 'Ver Opciones de Uniformes',
-                img: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80'
-            },
-            {
-                key: 'advertising',
-                num: '08',
-                pill: 'Promoción y Marca',
-                title: 'Publicidad',
-                fn: 'Sirve para promocionar proyectos, vallas, brochures y piezas comerciales para atraer clientes o compradores.',
-                btnText: 'Ver Opciones de Publicidad',
-                img: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=80'
-            },
-            {
-                key: 'analysis',
-                num: '09',
-                pill: 'Evaluación y Datos',
-                title: 'Análisis',
-                fn: 'Sirve para evaluar viabilidad técnica, costos, rentabilidad y riesgos antes de invertir o ejecutar.',
-                btnText: 'Ver Opciones de Análisis',
-                img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80'
-            },
-            {
-                key: 'civilEngineering',
-                num: '10',
-                pill: 'Obras e Infraestructura',
-                title: 'Ingeniería Civil',
-                fn: 'Sirve para estructurar, planear, costear y asesorar soluciones de ingeniería civil en Colombia y EE. UU.',
-                btnText: 'Ver Opciones de Ingeniería Civil',
-                img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80'
-            },
-            {
-                key: 'projectSales',
-                num: '11',
-                pill: 'Comercialización y EE. UU.',
-                title: 'Venta de Proyectos',
-                fn: 'Sirve para presentar, estructurar y negociar la venta de proyectos con clientes en EE. UU. y Colombia.',
-                btnText: 'Ver Opciones de Venta de Proyectos',
-                img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80'
-            }
-        ];
+        function closeMobileMenu() {
+            const nav = document.getElementById('navLinks');
+            if (nav) nav.classList.remove('open');
+        }
 
-        // Sub-opciones visuales para cada modal
-        const CHOICE_CONFIGS = {
-            civilWorks: {
-                kicker: 'Ejecución de Obras Civiles',
-                title: 'Selecciona una Línea de Ejecución',
-                desc: 'Elige entre Construcción, Planeación o Licencias para iniciar tu cotización o negociación de proyecto en Colombia o EE. UU.',
-                division: 'Construcción',
-                options: [
-                    { badge: 'Ejecutar obra', title: 'Construcción', sub: 'Ejecución de obra civil, estructura, acabados y control en campo.', img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Programar y costear', title: 'Planeación', sub: 'Cronogramas, presupuestos, cantidades de obra y programación.', img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Permisos y trámites', title: 'Licencias', sub: 'Gestión documental, normativa y trámites de licenciamiento.', img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80' }
-                ]
-            },
-            equipmentRental: {
-                kicker: 'Alquiler de Equipos',
-                title: 'Selecciona el Equipo a Alquilar',
-                desc: 'Botones con imagen difuminada para Sistemas modulares y equipos de encofrado, Maquinaria y Andamios.',
-                division: 'Construcción',
-                blurImages: true,
-                options: [
-                    { badge: 'Formaleta y vaciados', title: 'Sistemas modulares y equipos de encofrado', sub: 'Formaleta modular, tableros y sistemas de encofrado para obra.', img: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Operación en campo', title: 'Maquinaria', sub: 'Equipos de compactación, movimiento y apoyo operativo en obra.', img: 'https://images.unsplash.com/photo-1517089596392-fb9c9033e05b?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Trabajo en alturas', title: 'Andamios', sub: 'Sistemas de andamiaje y acceso seguro en alturas para obra.', img: 'https://images.unsplash.com/photo-1590496793907-51d601c43594?auto=format&fit=crop&w=800&q=80' }
-                ]
-            },
-            advisory: {
-                kicker: 'Asesoría Multidisciplinaria',
-                title: 'Asesoría con Profesionales en Distintas Ingenierías',
-                desc: 'Elige el área de ingeniería con la que necesitas orientación, revisión de planos, diagnóstico o acompañamiento técnico.',
-                division: 'Ingeniería y Tecnología',
-                options: [
-                    { badge: 'Estructuras y suelos', title: 'Civil y Estructural', sub: 'Revisión estructural, cimentaciones, vías y soluciones civiles.', img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Control y presupuesto', title: 'Gerencia y Costos', sub: 'Auditoría de presupuestos, cronogramas, interventoría y gestión.', img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Otras ramas técnicas', title: 'Especialidades y Redes', sub: 'Asesoría hidráulica, sanitaria, eléctrica, mecánica o ambiental.', img: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80' }
-                ]
-            },
-            drones: {
-                kicker: 'Levantamientos con Drones',
-                title: '¿Qué Necesitas con Drones?',
-                desc: 'Selecciona el resultado aéreo que requieres para tu terreno, finca, lote o proyecto de construcción.',
-                division: 'Ingeniería y Tecnología',
-                options: [
-                    { badge: 'Mapa de alta precisión', title: 'Ortofoto y Cartografía', sub: 'Imagen aérea georreferenciada para medir áreas y linderos.', img: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Cortes y rellenos', title: 'Terreno y Volúmenes', sub: 'Cálculo de movimiento de tierras, desniveles y volúmenes.', img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Control periódico', title: 'Seguimiento de Obra', sub: 'Registro visual y aéreo del avance constructivo o de cubiertas.', img: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80' }
-                ]
-            },
-            topography: {
-                kicker: 'Topografía',
-                title: 'Selecciona el Servicio de Topografía',
-                desc: 'Elige si requieres levantamiento de terreno, replanteo en obra o control de linderos y niveles.',
-                division: 'Ingeniería y Tecnología',
-                options: [
-                    { badge: 'Curvas y cotas', title: 'Levantamiento Topográfico', sub: 'Planos topográficos con curvas de nivel, cotas y detalles del lote.', img: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Trazado en campo', title: 'Replanteo en Obra', sub: 'Traslado de ejes, niveles y medidas de planos al terreno real.', img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Predios y escrituras', title: 'Linderos y Georreferenciación', sub: 'Verificación de áreas, colindancias y coordenadas oficiales.', img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80' }
-                ]
-            },
-            bim: {
-                kicker: 'Modelado BIM',
-                title: 'Alcance del Modelado BIM',
-                desc: 'Selecciona la función BIM que necesitas para diseñar, coordinar o cuantificar tu proyecto.',
-                division: 'Ingeniería y Tecnología',
-                options: [
-                    { badge: 'Modelo paramétrico', title: 'Modelado Multidisciplina', sub: 'Modelos coordinados de arquitectura, estructura y redes.', img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Prevenir errores', title: 'Coordinación y Choques', sub: 'Revisión de interferencias antes de construir en obra.', img: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Mediciones y tiempos', title: 'Cantidades y 4D/5D', sub: 'Obtención de cantidades de obra ligadas al modelo y cronograma.', img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' }
-                ]
-            },
-            threeD: {
-                kicker: 'Modelado y Visualización 3D',
-                title: '¿Qué Tipo de Visualización 3D Buscas?',
-                desc: 'Elige cómo quieres mostrar tu proyecto o diseño antes de construirlo o venderlo.',
-                division: 'Ingeniería y Tecnología',
-                options: [
-                    { badge: 'Imágenes realistas', title: 'Renders 3D', sub: 'Vistas exteriores, interiores y de conjunto con acabados reales.', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Video y experiencia', title: 'Recorridos 3D', sub: 'Recorridos animados por espacios y fases del proyecto.', img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Presentación comercial', title: 'Volumetría y Ventas', sub: 'Apoyo visual para vender proyectos o aprobar propuestas.', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80' }
-                ]
-            },
-            plans: {
-                kicker: 'Impresión de Planos',
-                title: 'Selecciona el Servicio de Planos',
-                desc: 'Elige el tipo de impresión o entrega física de planos que necesitas.',
-                division: 'Ingeniería y Tecnología',
-                options: [
-                    { badge: 'Gran formato', title: 'Plotteo de Planos', sub: 'Impresión de planos arquitectónicos, estructurales y de detalle.', img: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Listos para carpeta', title: 'Copias y Doblado', sub: 'Reproducción de juegos de planos doblados a formato carta/oficio.', img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Entrega formal', title: 'Carpetas y Entregas', sub: 'Armado de juegos de planos para revisión, obra o cliente final.', img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80' }
-                ]
-            },
-            uniforms: {
-                kicker: 'Uniformes de Trabajo',
-                title: 'Selecciona la Dotación o Uniforme',
-                desc: 'Elige el tipo de uniforme o prenda laboral para tu equipo en obra, oficina o visitas técnicas.',
-                division: 'Ingeniería y Tecnología',
-                options: [
-                    { badge: 'Uso diario en campo', title: 'Uniformes de Obra', sub: 'Camisas, pantalones y prendas resistentes para trabajo en campo.', img: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Seguridad visual', title: 'Alta Visibilidad', sub: 'Chalecos y prendas reflectivas para identificación en proyecto.', img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Identidad de equipo', title: 'Dotación con Marca', sub: 'Uniformes personalizados con logo o nombre de empresa/proyecto.', img: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80' }
-                ]
-            },
-            advertising: {
-                kicker: 'Publicidad',
-                title: '¿Qué Necesitas en Publicidad?',
-                desc: 'Elige el formato publicitario para dar a conocer tu proyecto, inmueble, empresa o servicio.',
-                division: 'Ingeniería y Tecnología',
-                options: [
-                    { badge: 'Presencia en sitio', title: 'Vallas y Pendones', sub: 'Avisos informativos, vallas de obra y piezas para punto o lote.', img: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Presentación a clientes', title: 'Material Comercial', sub: 'Fichas de proyectos, presentaciones y catálogos para clientes.', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Difusión y captación', title: 'Publicidad Digital', sub: 'Piezas gráficas y campañas para atraer clientes o compradores.', img: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80' }
-                ]
-            },
-            analysis: {
-                kicker: 'Análisis',
-                title: 'Selecciona el Tipo de Análisis',
-                desc: 'Elige qué evaluación necesitas para tomar decisiones claras sobre un proyecto, terreno o inversión.',
-                division: 'Ingeniería y Tecnología',
-                options: [
-                    { badge: '¿Es viable ejecutarlo?', title: 'Viabilidad Técnica', sub: 'Revisión de condiciones físicas, normativas y alcances del proyecto.', img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Inversión y retorno', title: 'Costos y Rentabilidad', sub: 'Análisis de inversión, precios unitarios, márgenes y retorno.', img: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Control y prevención', title: 'Riesgos y Diagnóstico', sub: 'Evaluación de cuellos de botella, desviaciones o estado actual.', img: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80' }
-                ]
-            },
-            civilEngineering: {
-                kicker: 'Ingeniería y Tecnología',
-                title: 'Ingeniería Civil — Selecciona Modalidad',
-                desc: 'Elige el servicio de Ingeniería Civil que deseas cotizar o negociar para proyectos en Colombia o Estados Unidos.',
-                division: 'Ingeniería y Tecnología',
-                options: [
-                    { badge: 'Ingeniería Civil', title: 'Diseño y Obras Civiles', sub: 'Soluciones técnicas de ingeniería civil, viabilidad y soporte de obra.', img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Ingeniería Civil', title: 'Planeación y Costos', sub: 'Presupuestos, programación, control de avance y gestión de recursos.', img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Conexión EE. UU. / Col', title: 'Consultoría Técnica', sub: 'Asesoría técnica, revisión de proyectos y negociación con clientes en EE. UU.', img: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80' }
-                ]
-            },
-            projectSales: {
-                kicker: 'Ingeniería y Tecnología',
-                title: 'Venta y Negociación de Proyectos',
-                desc: 'Selecciona la modalidad de Venta de Proyectos para presentar, negociar y cerrar proyectos con clientes en Estados Unidos y Colombia.',
-                division: 'Ingeniería y Tecnología',
-                options: [
-                    { badge: 'Venta de Proyectos', title: 'Proyectos Inmobiliarios / Obra', sub: 'Comercialización y negociación de proyectos residenciales, comerciales o civiles.', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Clientes EE. UU.', title: 'Servicios y Proyectos EE. UU.', sub: 'Oferta, negociación y venta de proyectos y servicios técnicos a clientes en EE. UU.', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80' },
-                    { badge: 'Negociación', title: 'Estructuración e Inversión', sub: 'Propuestas a la medida, cierre comercial y alianzas de proyectos.', img: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80' }
-                ]
-            }
-        };
-
+        // Paneles de divisiones
         function openDivisionPanel(panelId) {
             document.querySelectorAll('.portal-panel').forEach(p => p.classList.remove('active'));
             const target = document.getElementById(panelId);
@@ -1805,19 +2011,147 @@
             if (target) target.classList.remove('active');
         }
 
-        function openModalById(modalId) {
-            const el = document.getElementById(modalId);
-            if (el) el.classList.add('open');
-        }
+        // Catálogo inmobiliario (sin precios públicos)
+        const properties = [
+            { id: 1, type: 'casa', title: 'Residencia Barzal Alto', location: 'Villavicencio, Meta — Colombia', desc: 'Vivienda de diseño contemporáneo con distribución funcional y zonas sociales.', img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=700&q=80', tag: 'Venta' },
+            { id: 2, type: 'casa', title: 'Vivienda La Primavera', location: 'Vía Catama, Villavicencio — Colombia', desc: 'Espacios amplios, iluminación natural y entorno residencial consolidado.', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=80', tag: 'Venta' },
+            { id: 3, type: 'apartamento', title: 'Apartamento Panorama', location: 'Centro, Villavicencio — Colombia', desc: 'Ubicación urbana estratégica con buena ventilación y acceso rápido a servicios.', img: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=700&q=80', tag: 'Venta' },
+            { id: 4, type: 'apartamento', title: 'Apartamento Altavista', location: 'Villavicencio — Colombia', desc: 'Distribución práctica, seguridad y cercanía a corredores principales.', img: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=700&q=80', tag: 'Alquiler' },
+            { id: 5, type: 'finca', title: 'Finca El Encanto', location: 'Guayuriba, Villavicencio — Colombia', desc: 'Predio rural con áreas productivas, zonas verdes y acceso vehicular.', img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=700&q=80', tag: 'Venta' },
+            { id: 6, type: 'finca', title: 'Finca San Francisco', location: 'Vía Puerto López, Meta — Colombia', desc: 'Terreno amplio con espacios recreativos y proyección agropecuaria.', img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=700&q=80', tag: 'Venta' },
+            { id: 7, type: 'lote', title: 'Lote Corredor Vial', location: 'Anillo Vial, Meta — Colombia', desc: 'Terreno con frente sobre vía y potencial para desarrollo comercial, logístico o de servicios.', img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=700&q=80', tag: 'Venta' },
+            { id: 8, type: 'lote', title: 'Lote Quintas de la Sabana', location: 'Vía Acacías, Meta — Colombia', desc: 'Lote en sector residencial con disponibilidad para proyecto constructivo.', img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=700&q=80', tag: 'Venta' },
+            { id: 9, type: 'local', title: 'Local Comercial Centro', location: 'Villavicencio — Colombia', desc: 'Espacio comercial adaptable para atención al público, oficina o comercio.', img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=700&q=80', tag: 'Comercial' },
+            { id: 10, type: 'alquiler', title: 'Vivienda en Arrendamiento', location: 'Quintas de San Fernando, Colombia', desc: 'Inmueble disponible para arrendamiento con gestión y acompañamiento de NEXUS Intech.', img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=700&q=80', tag: 'Alquiler' }
+        ];
 
-        function closeModalById(modalId) {
-            const el = document.getElementById(modalId);
-            if (el) el.classList.remove('open');
-        }
+        // 11 líneas de Ingeniería y Tecnología con su función y botón con imagen
+        const TECH_SERVICES = [
+            { num: '01', key: 'advisory', pill: 'Asesoría', title: 'Asesoría con Profesionales en Distintas Ingenierías', fn: 'Conecta con ingenieros especializados para revisar planos, resolver dudas técnicas o validar soluciones antes de ejecutar.', btnText: 'Elegir Especialidad', img: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80' },
+            { num: '02', key: 'drones', pill: 'Aéreo', title: 'Levantamientos con Drones', fn: 'Captura ortofotos, modelos de terreno y seguimiento aéreo de obra para medir avances, áreas y volúmenes con rapidez.', btnText: 'Opciones con Drones', img: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=800&q=80' },
+            { num: '03', key: 'topography', pill: 'Terreno', title: 'Topografía', fn: 'Determina curvas de nivel, linderos y replanteos en campo para diseñar y construir con exactitud sobre el terreno.', btnText: 'Opciones de Topografía', img: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80' },
+            { num: '04', key: 'bim', pill: 'BIM', title: 'Modelado BIM', fn: 'Integra arquitectura, estructura y redes en un modelo digital para detectar interferencias y obtener cantidades reales.', btnText: 'Opciones de BIM', img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80' },
+            { num: '05', key: 'threeD', pill: 'Visualización', title: 'Modelado y Visualización 3D', fn: 'Convierte planos en renders y recorridos 3D realistas para presentar y vender proyectos antes de construirlos.', btnText: 'Opciones 3D', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80' },
+            { num: '06', key: 'plans', pill: 'Documentación', title: 'Impresión de Planos', fn: 'Plotteo, copias y armado de juegos de planos en gran formato listos para obra, trámites o entrega a clientes.', btnText: 'Opciones de Planos', img: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80' },
+            { num: '07', key: 'uniforms', pill: 'Dotación', title: 'Uniformes de Trabajo', fn: 'Suministro de dotación y prendas laborales personalizadas y de alta visibilidad para cuadrillas y personal técnico.', btnText: 'Opciones de Uniformes', img: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80' },
+            { num: '08', key: 'advertising', pill: 'Difusión', title: 'Publicidad', fn: 'Diseño y producción de vallas de obra, material comercial y piezas digitales para posicionar proyectos e inmuebles.', btnText: 'Opciones de Publicidad', img: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=80' },
+            { num: '09', key: 'analysis', pill: 'Evaluación', title: 'Análisis', fn: 'Estudios de viabilidad técnica, costos, rentabilidad y diagnóstico de riesgos para respaldar decisiones de inversión.', btnText: 'Opciones de Análisis', img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
+            { num: '10', key: 'civilEngineering', pill: 'Ingeniería', title: 'Ingeniería Civil', fn: 'Diseño técnico, planeación, costos y consultoría de obras civiles para proyectos en Colombia y Estados Unidos.', btnText: 'Opciones Ingeniería Civil', img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80' },
+            { num: '11', key: 'projectSales', pill: 'Comercial', title: 'Venta y Negociación de Proyectos', fn: 'Estructuración comercial, presentación y cierre de proyectos e inversiones con clientes en EE. UU. y Colombia.', btnText: 'Opciones Venta de Proyectos', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80' }
+        ];
 
-        function handleBackdropClose(e, modalId) {
-            if (e.target.id === modalId) closeModalById(modalId);
-        }
+        const TECH_MODAL_CONFIGS = {
+            advisory: {
+                kicker: '01 • Asesoría Multidisciplinaria',
+                title: 'Asesoría con Profesionales en Distintas Ingenierías',
+                desc: 'Elige el área de ingeniería con la que necesitas orientación, revisión de planos, diagnóstico o acompañamiento técnico.',
+                options: [
+                    { badge: 'Estructuras y suelos', title: 'Civil y Estructural', sub: 'Revisión estructural, cimentaciones, vías y soluciones civiles.', img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80' },
+                    { badge: 'Control y presupuesto', title: 'Gerencia y Costos', sub: 'Auditoría de presupuestos, cronogramas, interventoría y gestión.', img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
+                    { badge: 'Otras ramas técnicas', title: 'Especialidades y Redes', sub: 'Asesoría hidráulica, sanitaria, eléctrica, mecánica o ambiental.', img: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80' }
+                ]
+            },
+            drones: {
+                kicker: '02 • Levantamientos con Drones',
+                title: '¿Qué Necesitas con Drones?',
+                desc: 'Selecciona el resultado aéreo que requieres para tu terreno, finca, lote o proyecto de construcción.',
+                options: [
+                    { badge: 'Mapa de alta precisión', title: 'Ortofoto y Cartografía', sub: 'Imagen aérea georreferenciada para medir áreas y linderos.', img: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=800&q=80' },
+                    { badge: 'Cortes y rellenos', title: 'Terreno y Volúmenes', sub: 'Cálculo de movimiento de tierras, desniveles y volúmenes.', img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80' },
+                    { badge: 'Control periódico', title: 'Seguimiento de Obra', sub: 'Registro visual y aéreo del avance constructivo o de cubiertas.', img: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80' }
+                ]
+            },
+            topography: {
+                kicker: '03 • Topografía',
+                title: 'Selecciona el Servicio de Topografía',
+                desc: 'Elige si requieres levantamiento de terreno, replanteo en obra o control de linderos y niveles.',
+                options: [
+                    { badge: 'Curvas y cotas', title: 'Levantamiento Topográfico', sub: 'Planos topográficos con curvas de nivel, cotas y detalles del lote.', img: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80' },
+                    { badge: 'Trazado en campo', title: 'Replanteo en Obra', sub: 'Traslado de ejes, niveles y medidas de planos al terreno real.', img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80' },
+                    { badge: 'Predios y escrituras', title: 'Linderos y Georreferenciación', sub: 'Verificación de áreas, colindancias y coordenadas oficiales.', img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80' }
+                ]
+            },
+            bim: {
+                kicker: '04 • Modelado BIM',
+                title: 'Alcance del Modelado BIM',
+                desc: 'Selecciona la función BIM que necesitas para diseñar, coordinar o cuantificar tu proyecto.',
+                options: [
+                    { badge: 'Modelo paramétrico', title: 'Modelado Multidisciplina', sub: 'Modelos coordinados de arquitectura, estructura y redes.', img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80' },
+                    { badge: 'Prevenir errores', title: 'Coordinación y Choques', sub: 'Revisión de interferencias antes de construir en obra.', img: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80' },
+                    { badge: 'Mediciones y tiempos', title: 'Cantidades y 4D/5D', sub: 'Obtención de cantidades de obra ligadas al modelo y cronograma.', img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' }
+                ]
+            },
+            threeD: {
+                kicker: '05 • Modelado y Visualización 3D',
+                title: '¿Qué Tipo de Visualización 3D Buscas?',
+                desc: 'Elige cómo quieres mostrar tu proyecto o diseño antes de construirlo o venderlo.',
+                options: [
+                    { badge: 'Imágenes realistas', title: 'Renders 3D', sub: 'Vistas exteriores, interiores y de conjunto con acabados reales.', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80' },
+                    { badge: 'Video y experiencia', title: 'Recorridos 3D', sub: 'Recorridos animados por espacios y fases del proyecto.', img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80' },
+                    { badge: 'Presentación comercial', title: 'Volumetría y Ventas', sub: 'Apoyo visual para vender proyectos o aprobar propuestas.', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80' }
+                ]
+            },
+            plans: {
+                kicker: '06 • Impresión de Planos',
+                title: 'Selecciona el Servicio de Planos',
+                desc: 'Elige el tipo de impresión o entrega física de planos que necesitas.',
+                options: [
+                    { badge: 'Gran formato', title: 'Plotteo de Planos', sub: 'Impresión de planos arquitectónicos, estructurales y de detalle.', img: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80' },
+                    { badge: 'Listos para carpeta', title: 'Copias y Doblado', sub: 'Reproducción de juegos de planos doblados a formato carta/oficio.', img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80' },
+                    { badge: 'Entrega formal', title: 'Carpetas y Entregas', sub: 'Armado de juegos de planos para revisión, obra o cliente final.', img: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80' }
+                ]
+            },
+            uniforms: {
+                kicker: '07 • Uniformes de Trabajo',
+                title: 'Selecciona la Dotación o Uniforme',
+                desc: 'Elige el tipo de uniforme o prenda laboral para tu equipo en obra, oficina o visitas técnicas.',
+                options: [
+                    { badge: 'Uso diario en campo', title: 'Uniformes de Obra', sub: 'Camisas, pantalones y prendas resistentes para trabajo en campo.', img: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80' },
+                    { badge: 'Seguridad visual', title: 'Alta Visibilidad', sub: 'Chalecos y prendas reflectivas para identificación en proyecto.', img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80' },
+                    { badge: 'Identidad de equipo', title: 'Dotación con Marca', sub: 'Uniformes personalizados con logo o nombre de empresa/proyecto.', img: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80' }
+                ]
+            },
+            advertising: {
+                kicker: '08 • Publicidad',
+                title: '¿Qué Necesitas en Publicidad?',
+                desc: 'Elige el formato publicitario para dar a conocer tu proyecto, inmueble, empresa o servicio.',
+                options: [
+                    { badge: 'Presencia en sitio', title: 'Vallas y Pendones', sub: 'Avisos informativos, vallas de obra y piezas para punto o lote.', img: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=800&q=80' },
+                    { badge: 'Presentación a clientes', title: 'Material Comercial', sub: 'Fichas de proyectos, presentaciones y catálogos para clientes.', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80' },
+                    { badge: 'Difusión y captación', title: 'Publicidad Digital', sub: 'Piezas gráficas y campañas para atraer clientes o compradores.', img: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80' }
+                ]
+            },
+            analysis: {
+                kicker: '09 • Análisis',
+                title: 'Selecciona el Tipo de Análisis',
+                desc: 'Elige qué evaluación necesitas para tomar decisiones claras sobre un proyecto, terreno o inversión.',
+                options: [
+                    { badge: '¿Es viable ejecutarlo?', title: 'Viabilidad Técnica', sub: 'Revisión de condiciones físicas, normativas y alcances del proyecto.', img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
+                    { badge: 'Inversión y retorno', title: 'Costos y Rentabilidad', sub: 'Análisis de inversión, precios unitarios, márgenes y retorno.', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80' },
+                    { badge: 'Control y prevención', title: 'Riesgos y Diagnóstico', sub: 'Evaluación de cuellos de botella, desviaciones o estado actual.', img: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80' }
+                ]
+            },
+            civilEngineering: {
+                kicker: '10 • Ingeniería Civil',
+                title: 'Ingeniería Civil — Selecciona Modalidad',
+                desc: 'Elige el servicio de Ingeniería Civil que deseas cotizar o negociar para proyectos en Colombia o Estados Unidos.',
+                options: [
+                    { badge: 'Ingeniería Civil', title: 'Diseño y Obras Civiles', sub: 'Soluciones técnicas de ingeniería civil, viabilidad y soporte de obra.', img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80' },
+                    { badge: 'Ingeniería Civil', title: 'Planeación y Costos', sub: 'Presupuestos, programación, control de avance y gestión de recursos.', img: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
+                    { badge: 'Conexión EE. UU. / Col', title: 'Consultoría Técnica', sub: 'Asesoría técnica, revisión de proyectos y negociación con clientes en EE. UU.', img: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80' }
+                ]
+            },
+            projectSales: {
+                kicker: '11 • Venta y Negociación de Proyectos',
+                title: 'Venta y Negociación de Proyectos',
+                desc: 'Selecciona la modalidad de Venta de Proyectos para presentar, negociar y cerrar proyectos con clientes en Estados Unidos y Colombia.',
+                options: [
+                    { badge: 'Venta de Proyectos', title: 'Proyectos Inmobiliarios / Obra', sub: 'Comercialización y negociación de proyectos residenciales, comerciales o civiles.', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80' },
+                    { badge: 'Clientes EE. UU.', title: 'Servicios y Proyectos EE. UU.', sub: 'Oferta, negociación y venta de proyectos y servicios técnicos a clientes en EE. UU.', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80' },
+                    { badge: 'Negociación', title: 'Estructuración e Inversión', sub: 'Propuestas a la medida, cierre comercial y alianzas de proyectos.', img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80' }
+                ]
+            }
+        };
 
         function renderTechButtonsGrid() {
             const grid = document.getElementById('techButtonsGrid');
@@ -1835,7 +2169,7 @@
                                 <h4>${item.title}</h4>
                                 <p>${item.fn}</p>
                             </div>
-                            <button type="button" class="tech-img-btn" onclick="openChoiceModal('${item.key}')">
+                            <button type="button" class="tech-img-btn" onclick="openTechServiceModal('${item.key}')">
                                 <span>${item.btnText}</span>
                                 <span class="mini-thumb" style="background-image: url('${item.img}');"></span>
                             </button>
@@ -1845,51 +2179,36 @@
             `).join('');
         }
 
-        function openChoiceModal(configKey) {
-            const cfg = CHOICE_CONFIGS[configKey];
+        function openTechServiceModal(serviceKey) {
+            const cfg = TECH_MODAL_CONFIGS[serviceKey];
             if (!cfg) return;
 
-            document.getElementById('choiceModalKicker').textContent = cfg.kicker;
-            document.getElementById('choiceModalTitle').textContent = cfg.title;
-            document.getElementById('choiceModalDesc').textContent = cfg.desc;
+            document.getElementById('techModalKicker').textContent = cfg.kicker;
+            document.getElementById('techModalTitle').textContent = cfg.title;
+            document.getElementById('techModalDesc').textContent = cfg.desc;
 
-            const container = document.getElementById('choiceModalOptions');
+            const container = document.getElementById('techModalOptions');
             container.innerHTML = cfg.options.map(opt => {
-                const blurCls = cfg.blurImages ? 'blurred-eq' : '';
                 const fullLabel = `${cfg.title} — ${opt.title}`;
                 return `
-                    <button type="button" class="sub-img-btn" onclick="selectOptionFromModal('${escapeJsAttr(fullLabel)}', '${escapeJsAttr(opt.title)}', '${escapeJsAttr(cfg.division)}')">
-                        <span class="sub-img-layer ${blurCls}" style="background-image: url('${opt.img}');"></span>
-                        <span class="sub-img-scrim"></span>
-                        <span class="sub-img-content">
-                            <span class="sub-img-badge">${opt.badge}</span>
-                            <span class="sub-img-title">${opt.title}</span>
-                            <span class="sub-img-sub">${opt.sub}</span>
-                        </span>
+                    <button type="button" class="visual-choice-btn" onclick="selectTechOption('${escapeJsAttr(fullLabel)}')">
+                        <div class="choice-photo" style="background-image: url('${opt.img}');"></div>
+                        <div class="choice-overlay"></div>
+                        <div class="choice-content">
+                            <span class="choice-badge">${opt.badge}</span>
+                            <span class="choice-title">${opt.title}</span>
+                            <span class="choice-sub">${opt.sub}</span>
+                        </div>
                     </button>
                 `;
             }).join('');
 
-            openModalById('choiceModal');
+            openModalById('techChoiceModal');
         }
 
-        function selectOptionFromModal(fullLabel, shortTitle, divisionName) {
-            closeModalById('choiceModal');
-            selectedServiceLabel = fullLabel;
-            document.getElementById('reqModalCategory').textContent = 'NEXUS ' + divisionName;
-            document.getElementById('reqModalTitle').textContent = shortTitle;
-            document.getElementById('modalSelectedLabel').textContent = fullLabel;
-            document.getElementById('modalRequestSuccess').style.display = 'none';
-            openModalById('requestFormModal');
-        }
-
-        function openDirectRequestModal(serviceTitle, divisionName) {
-            selectedServiceLabel = serviceTitle;
-            document.getElementById('reqModalCategory').textContent = 'NEXUS ' + divisionName;
-            document.getElementById('reqModalTitle').textContent = serviceTitle;
-            document.getElementById('modalSelectedLabel').textContent = serviceTitle;
-            document.getElementById('modalRequestSuccess').style.display = 'none';
-            openModalById('requestFormModal');
+        function selectTechOption(fullLabel) {
+            closeModalById('techChoiceModal');
+            openQuoteModal(fullLabel, 'NEXUS Ingeniería y Tecnología');
         }
 
         function renderProperties(filter = 'all') {
@@ -1899,6 +2218,7 @@
             const filtered = filter === 'all'
                 ? properties
                 : properties.filter(p => p.type === filter || (filter === 'alquiler' && p.tag === 'Alquiler'));
+
             filtered.forEach(prop => {
                 const card = document.createElement('div');
                 card.className = 'property-card';
@@ -1910,6 +2230,9 @@
                         <span>${prop.location}</span>
                         <h4>${prop.title}</h4>
                         <p>${prop.desc}</p>
+                        <button type="button" class="btn-inquire-prop" onclick="openQuoteModal('Inmobiliaria — ${escapeJsAttr(prop.title)}', 'NEXUS Inmobiliaria')">
+                            Consultar Inmueble
+                        </button>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -1922,37 +2245,117 @@
             renderProperties(type);
         }
 
+        // Control de modales
+        function openModalById(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) modal.classList.add('open');
+        }
+
+        function closeModalById(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) modal.classList.remove('open');
+        }
+
+        function handleBackdropClick(e, modalId) {
+            if (e.target.id === modalId) closeModalById(modalId);
+        }
+
+        function openObrasCivilesModal() {
+            openModalById('obrasCivilesModal');
+        }
+
+        function openAlquilerEquiposModal() {
+            openModalById('alquilerEquiposModal');
+        }
+
+        function selectVisualChoice(selectedLabel, categoryName) {
+            closeModalById('obrasCivilesModal');
+            closeModalById('alquilerEquiposModal');
+            openQuoteModal(selectedLabel, categoryName);
+        }
+
+        function openQuoteModal(selectedOption, categoryLabel = 'Cotización y Negociación') {
+            document.getElementById('quoteModalCategory').textContent = `${categoryLabel} • Opción Preseleccionada`;
+            document.getElementById('quoteModalTitle').textContent = 'Cotización y Negociación';
+            document.getElementById('qSelectedOption').value = selectedOption;
+            document.getElementById('quoteSuccessLabel').textContent = selectedOption;
+            document.getElementById('quoteSuccess').style.display = 'none';
+            openModalById('quoteModal');
+        }
+
+        // Generador de enlaces directos a correo, Gmail y WhatsApp
         function buildContactLinks(data) {
-            const subject = `NEXUS Intech - ${data.service} (${data.region || 'Colombia / EE. UU.'})`;
+            const subject = `NEXUS Intech - ${data.service} (${data.region || 'Colombia / EE. UU.'}) - ${data.type}`;
             const body = [
+                `Destino de correo: ${NEXUS_EMAIL}`,
+                `Dirigido a: Ingeniero Diego Hoyos (Project Manager, CEO — NEXUS Intech)`,
                 `País / Ubicación: ${data.region || 'Colombia / EE. UU.'}`,
-                `Servicio / Línea: ${data.service}`,
+                `Servicio / Línea / Proyecto: ${data.service}`,
+                `Tipo: ${data.type}`,
                 `Nombre: ${data.name}`,
                 `Teléfono: ${data.phone}`,
-                `Correo: ${data.email}`,
+                `Correo del remitente: ${data.email}`,
                 `Horario disponible: ${data.schedule}`,
-                `Descripción / Proyecto: ${data.desc}`
+                `Descripción / Motivo / Negociación: ${data.desc}`
             ].join('\n');
 
             const mailtoUrl = `mailto:${NEXUS_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            const waUrl = `https://wa.me/${NEXUS_WHATSAPP}?text=${encodeURIComponent('Hola NEXUS Intech,\n' + body)}`;
-            return { mailtoUrl, waUrl };
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(NEXUS_EMAIL)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            const waUrl = `https://wa.me/${NEXUS_WHATSAPP}?text=${encodeURIComponent(`Hola NEXUS Intech (${NEXUS_EMAIL}),\n` + body)}`;
+            return { mailtoUrl, gmailUrl, waUrl };
         }
 
-        function handleModalRequestSubmit(e) {
+        function copyNexusEmail(statusElementId) {
+            const statusEl = document.getElementById(statusElementId);
+            const showStatus = (msg) => {
+                if (statusEl) statusEl.textContent = msg;
+            };
+
+            try {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(NEXUS_EMAIL).then(() => {
+                        showStatus(`Copiado: ${NEXUS_EMAIL}`);
+                    }).catch(() => {
+                        fallbackCopyText(NEXUS_EMAIL, showStatus);
+                    });
+                } else {
+                    fallbackCopyText(NEXUS_EMAIL, showStatus);
+                }
+            } catch (err) {
+                fallbackCopyText(NEXUS_EMAIL, showStatus);
+            }
+        }
+
+        function fallbackCopyText(text, showStatus) {
+            try {
+                const tempInput = document.createElement('input');
+                tempInput.value = text;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+                showStatus(`Copiado: ${text}`);
+            } catch (err) {
+                showStatus(`Correo: ${text}`);
+            }
+        }
+
+        function handleQuoteModalSubmit(e) {
             e.preventDefault();
             const links = buildContactLinks({
-                region: document.getElementById('mRegion').value,
-                service: selectedServiceLabel,
-                name: document.getElementById('mName').value,
-                phone: document.getElementById('mPhone').value,
-                email: document.getElementById('mEmail').value,
-                schedule: document.getElementById('mSchedule').value,
-                desc: document.getElementById('mDesc').value
+                region: document.getElementById('qRegion').value,
+                service: document.getElementById('qSelectedOption').value,
+                type: document.getElementById('qType').value,
+                name: document.getElementById('qName').value,
+                phone: document.getElementById('qPhone').value,
+                email: document.getElementById('qEmail').value,
+                schedule: document.getElementById('qSchedule').value,
+                desc: document.getElementById('qDesc').value
             });
-            document.getElementById('modalMailLink').href = links.mailtoUrl;
-            document.getElementById('modalWaLink').href = links.waUrl;
-            document.getElementById('modalRequestSuccess').style.display = 'block';
+            document.getElementById('quoteMailLink').href = links.mailtoUrl;
+            document.getElementById('quoteGmailLink').href = links.gmailUrl;
+            document.getElementById('quoteWaLink').href = links.waUrl;
+            document.getElementById('quoteSuccess').style.display = 'block';
         }
 
         function handleClientSubmit(e) {
@@ -1960,6 +2363,7 @@
             const links = buildContactLinks({
                 region: document.getElementById('cRegion').value,
                 service: document.getElementById('cService').value,
+                type: document.getElementById('cType').value,
                 name: document.getElementById('cName').value,
                 phone: document.getElementById('cPhone').value,
                 email: document.getElementById('cEmail').value,
@@ -1967,6 +2371,7 @@
                 desc: document.getElementById('cDesc').value
             });
             document.getElementById('clientMailLink').href = links.mailtoUrl;
+            document.getElementById('clientGmailLink').href = links.gmailUrl;
             document.getElementById('clientWaLink').href = links.waUrl;
             document.getElementById('clientSuccess').style.display = 'block';
         }
@@ -1976,6 +2381,7 @@
             const links = buildContactLinks({
                 region: document.getElementById('pRegion').value,
                 service: document.getElementById('pService').value,
+                type: document.getElementById('pType').value,
                 name: document.getElementById('pName').value,
                 phone: document.getElementById('pPhone').value,
                 email: document.getElementById('pEmail').value,
@@ -1983,6 +2389,7 @@
                 desc: document.getElementById('pDesc').value
             });
             document.getElementById('partnerMailLink').href = links.mailtoUrl;
+            document.getElementById('partnerGmailLink').href = links.gmailUrl;
             document.getElementById('partnerWaLink').href = links.waUrl;
             document.getElementById('partnerSuccess').style.display = 'block';
         }
